@@ -142,10 +142,10 @@ export default function CheckoutPage() {
                                     className={`flex items-center gap-2 ${s.num <= step ? 'cursor-pointer' : 'cursor-default'}`}
                                 >
                                     <div className={`w-10 h-10 rounded-full flex items-center justify-center font-body text-sm transition-all ${step === s.num
-                                            ? 'bg-[var(--color-navy)] text-white'
-                                            : step > s.num
-                                                ? 'bg-emerald-500 text-white'
-                                                : 'bg-white text-[var(--color-gray)] border border-[var(--color-sand)]'
+                                        ? 'bg-[var(--color-navy)] text-white'
+                                        : step > s.num
+                                            ? 'bg-emerald-500 text-white'
+                                            : 'bg-white text-[var(--color-gray)] border border-[var(--color-sand)]'
                                         }`}>
                                         {step > s.num ? (
                                             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -234,102 +234,102 @@ export default function CheckoutPage() {
                         {/* Step 2: Shipping */}
                         {step === 2 && (
                             <div className="bg-white rounded-2xl p-8 shadow-sm">
-                                <h2 className="font-heading text-2xl text-[var(--color-navy)] mb-6">Shipping Information</h2>
+                                <h2 className="font-heading text-2xl text-black mb-6">Shipping Information</h2>
 
                                 <div className="grid sm:grid-cols-2 gap-5">
                                     <div>
-                                        <label className="block font-body text-sm text-[var(--color-navy)] mb-2">First Name *</label>
+                                        <label className="block font-body text-sm text-black mb-2">First Name *</label>
                                         <input
                                             type="text"
                                             name="firstName"
                                             value={shippingInfo.firstName}
                                             onChange={handleShippingChange}
-                                            className="w-full px-4 py-3 border border-[var(--color-sand)] rounded-lg font-body text-[var(--color-navy)] focus:outline-none focus:border-[var(--color-navy)] transition-colors"
+                                            className="w-full px-4 py-3 border border-[var(--color-sand)] rounded-lg font-body text-black focus:outline-none focus:border-black transition-colors"
                                             required
                                         />
                                     </div>
                                     <div>
-                                        <label className="block font-body text-sm text-[var(--color-navy)] mb-2">Last Name *</label>
+                                        <label className="block font-body text-sm text-black mb-2">Last Name *</label>
                                         <input
                                             type="text"
                                             name="lastName"
                                             value={shippingInfo.lastName}
                                             onChange={handleShippingChange}
-                                            className="w-full px-4 py-3 border border-[var(--color-sand)] rounded-lg font-body text-[var(--color-navy)] focus:outline-none focus:border-[var(--color-navy)] transition-colors"
+                                            className="w-full px-4 py-3 border border-[var(--color-sand)] rounded-lg font-body text-black focus:outline-none focus:border-black transition-colors"
                                             required
                                         />
                                     </div>
                                     <div className="sm:col-span-2">
-                                        <label className="block font-body text-sm text-[var(--color-navy)] mb-2">Email *</label>
+                                        <label className="block font-body text-sm text-black mb-2">Email *</label>
                                         <input
                                             type="email"
                                             name="email"
                                             value={shippingInfo.email}
                                             onChange={handleShippingChange}
-                                            className="w-full px-4 py-3 border border-[var(--color-sand)] rounded-lg font-body text-[var(--color-navy)] focus:outline-none focus:border-[var(--color-navy)] transition-colors"
+                                            className="w-full px-4 py-3 border border-[var(--color-sand)] rounded-lg font-body text-black focus:outline-none focus:border-black transition-colors"
                                             required
                                         />
                                     </div>
                                     <div className="sm:col-span-2">
-                                        <label className="block font-body text-sm text-[var(--color-navy)] mb-2">Phone</label>
+                                        <label className="block font-body text-sm text-black mb-2">Phone</label>
                                         <input
                                             type="tel"
                                             name="phone"
                                             value={shippingInfo.phone}
                                             onChange={handleShippingChange}
-                                            className="w-full px-4 py-3 border border-[var(--color-sand)] rounded-lg font-body text-[var(--color-navy)] focus:outline-none focus:border-[var(--color-navy)] transition-colors"
+                                            className="w-full px-4 py-3 border border-[var(--color-sand)] rounded-lg font-body text-black focus:outline-none focus:border-black transition-colors"
                                         />
                                     </div>
                                     <div className="sm:col-span-2">
-                                        <label className="block font-body text-sm text-[var(--color-navy)] mb-2">Address *</label>
+                                        <label className="block font-body text-sm text-black mb-2">Address *</label>
                                         <input
                                             type="text"
                                             name="address"
                                             value={shippingInfo.address}
                                             onChange={handleShippingChange}
-                                            className="w-full px-4 py-3 border border-[var(--color-sand)] rounded-lg font-body text-[var(--color-navy)] focus:outline-none focus:border-[var(--color-navy)] transition-colors"
+                                            className="w-full px-4 py-3 border border-[var(--color-sand)] rounded-lg font-body text-black focus:outline-none focus:border-black transition-colors"
                                             required
                                         />
                                     </div>
                                     <div className="sm:col-span-2">
-                                        <label className="block font-body text-sm text-[var(--color-navy)] mb-2">Apartment, suite, etc.</label>
+                                        <label className="block font-body text-sm text-black mb-2">Apartment, suite, etc.</label>
                                         <input
                                             type="text"
                                             name="apartment"
                                             value={shippingInfo.apartment}
                                             onChange={handleShippingChange}
-                                            className="w-full px-4 py-3 border border-[var(--color-sand)] rounded-lg font-body text-[var(--color-navy)] focus:outline-none focus:border-[var(--color-navy)] transition-colors"
+                                            className="w-full px-4 py-3 border border-[var(--color-sand)] rounded-lg font-body text-black focus:outline-none focus:border-black transition-colors"
                                         />
                                     </div>
                                     <div>
-                                        <label className="block font-body text-sm text-[var(--color-navy)] mb-2">City *</label>
+                                        <label className="block font-body text-sm text-black mb-2">City *</label>
                                         <input
                                             type="text"
                                             name="city"
                                             value={shippingInfo.city}
                                             onChange={handleShippingChange}
-                                            className="w-full px-4 py-3 border border-[var(--color-sand)] rounded-lg font-body text-[var(--color-navy)] focus:outline-none focus:border-[var(--color-navy)] transition-colors"
+                                            className="w-full px-4 py-3 border border-[var(--color-sand)] rounded-lg font-body text-black focus:outline-none focus:border-black transition-colors"
                                             required
                                         />
                                     </div>
                                     <div>
-                                        <label className="block font-body text-sm text-[var(--color-navy)] mb-2">Postal Code *</label>
+                                        <label className="block font-body text-sm text-black mb-2">Postal Code *</label>
                                         <input
                                             type="text"
                                             name="postalCode"
                                             value={shippingInfo.postalCode}
                                             onChange={handleShippingChange}
-                                            className="w-full px-4 py-3 border border-[var(--color-sand)] rounded-lg font-body text-[var(--color-navy)] focus:outline-none focus:border-[var(--color-navy)] transition-colors"
+                                            className="w-full px-4 py-3 border border-[var(--color-sand)] rounded-lg font-body text-black focus:outline-none focus:border-black transition-colors"
                                             required
                                         />
                                     </div>
                                     <div className="sm:col-span-2">
-                                        <label className="block font-body text-sm text-[var(--color-navy)] mb-2">Country *</label>
+                                        <label className="block font-body text-sm text-black mb-2">Country *</label>
                                         <select
                                             name="country"
                                             value={shippingInfo.country}
                                             onChange={handleShippingChange}
-                                            className="w-full px-4 py-3 border border-[var(--color-sand)] rounded-lg font-body text-[var(--color-navy)] focus:outline-none focus:border-[var(--color-navy)] transition-colors bg-white"
+                                            className="w-full px-4 py-3 border border-[var(--color-sand)] rounded-lg font-body text-black focus:outline-none focus:border-black transition-colors bg-white"
                                         >
                                             <option>France</option>
                                             <option>United Kingdom</option>
@@ -344,13 +344,13 @@ export default function CheckoutPage() {
                                 <div className="flex gap-4 mt-8">
                                     <button
                                         onClick={() => setStep(1)}
-                                        className="px-8 py-4 border border-[var(--color-navy)] text-[var(--color-navy)] font-body text-sm tracking-luxury uppercase hover:bg-[var(--color-navy)] hover:text-white transition-all rounded-lg"
+                                        className="px-8 py-4 border border-black text-black font-body text-sm tracking-luxury uppercase hover:bg-black hover:text-white transition-all rounded-lg"
                                     >
                                         Back
                                     </button>
                                     <button
                                         onClick={() => setStep(3)}
-                                        className="flex-1 py-4 bg-[var(--color-navy)] text-white font-body text-sm tracking-luxury uppercase hover:bg-[var(--color-navy-dark)] transition-all rounded-lg"
+                                        className="flex-1 py-4 bg-black text-white font-body text-sm tracking-luxury uppercase hover:bg-gray-800 transition-all rounded-lg"
                                     >
                                         Continue to Payment
                                     </button>
@@ -361,10 +361,10 @@ export default function CheckoutPage() {
                         {/* Step 3: Payment */}
                         {step === 3 && (
                             <div className="bg-white rounded-2xl p-8 shadow-sm">
-                                <h2 className="font-heading text-2xl text-[var(--color-navy)] mb-6">Payment Details</h2>
+                                <h2 className="font-heading text-2xl text-black mb-6">Payment Details</h2>
 
                                 {/* Card Preview */}
-                                <div className="bg-gradient-to-br from-[var(--color-navy)] to-[#2a3d5f] rounded-xl p-6 mb-8 text-white">
+                                <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl p-6 mb-8 text-white">
                                     <div className="flex justify-between items-start mb-8">
                                         <div className="w-12 h-8 bg-gradient-to-br from-amber-200 to-amber-400 rounded opacity-80" />
                                         <svg className="w-10 h-10 opacity-80" viewBox="0 0 48 48" fill="currentColor">
@@ -389,7 +389,7 @@ export default function CheckoutPage() {
 
                                 <div className="space-y-5">
                                     <div>
-                                        <label className="block font-body text-sm text-[var(--color-navy)] mb-2">Card Number *</label>
+                                        <label className="block font-body text-sm text-black mb-2">Card Number *</label>
                                         <input
                                             type="text"
                                             name="cardNumber"
@@ -397,24 +397,24 @@ export default function CheckoutPage() {
                                             onChange={handlePaymentChange}
                                             placeholder="1234 5678 9012 3456"
                                             maxLength={19}
-                                            className="w-full px-4 py-3 border border-[var(--color-sand)] rounded-lg font-body text-[var(--color-navy)] focus:outline-none focus:border-[var(--color-navy)] transition-colors"
+                                            className="w-full px-4 py-3 border border-[var(--color-sand)] rounded-lg font-body text-black placeholder:text-gray-400 focus:outline-none focus:border-black transition-colors"
                                             required
                                         />
                                     </div>
                                     <div>
-                                        <label className="block font-body text-sm text-[var(--color-navy)] mb-2">Name on Card *</label>
+                                        <label className="block font-body text-sm text-black mb-2">Name on Card *</label>
                                         <input
                                             type="text"
                                             name="cardName"
                                             value={paymentInfo.cardName}
                                             onChange={handlePaymentChange}
-                                            className="w-full px-4 py-3 border border-[var(--color-sand)] rounded-lg font-body text-[var(--color-navy)] focus:outline-none focus:border-[var(--color-navy)] transition-colors"
+                                            className="w-full px-4 py-3 border border-[var(--color-sand)] rounded-lg font-body text-black focus:outline-none focus:border-black transition-colors"
                                             required
                                         />
                                     </div>
                                     <div className="grid grid-cols-2 gap-5">
                                         <div>
-                                            <label className="block font-body text-sm text-[var(--color-navy)] mb-2">Expiry *</label>
+                                            <label className="block font-body text-sm text-black mb-2">Expiry *</label>
                                             <input
                                                 type="text"
                                                 name="expiry"
@@ -422,12 +422,12 @@ export default function CheckoutPage() {
                                                 onChange={handlePaymentChange}
                                                 placeholder="MM/YY"
                                                 maxLength={5}
-                                                className="w-full px-4 py-3 border border-[var(--color-sand)] rounded-lg font-body text-[var(--color-navy)] focus:outline-none focus:border-[var(--color-navy)] transition-colors"
+                                                className="w-full px-4 py-3 border border-[var(--color-sand)] rounded-lg font-body text-black placeholder:text-gray-400 focus:outline-none focus:border-black transition-colors"
                                                 required
                                             />
                                         </div>
                                         <div>
-                                            <label className="block font-body text-sm text-[var(--color-navy)] mb-2">CVV *</label>
+                                            <label className="block font-body text-sm text-black mb-2">CVV *</label>
                                             <input
                                                 type="password"
                                                 name="cvv"
@@ -435,7 +435,7 @@ export default function CheckoutPage() {
                                                 onChange={handlePaymentChange}
                                                 placeholder="•••"
                                                 maxLength={4}
-                                                className="w-full px-4 py-3 border border-[var(--color-sand)] rounded-lg font-body text-[var(--color-navy)] focus:outline-none focus:border-[var(--color-navy)] transition-colors"
+                                                className="w-full px-4 py-3 border border-[var(--color-sand)] rounded-lg font-body text-black placeholder:text-gray-400 focus:outline-none focus:border-black transition-colors"
                                                 required
                                             />
                                         </div>
