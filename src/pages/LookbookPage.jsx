@@ -13,7 +13,7 @@ export default function LookbookPage() {
                 <div
                     className="absolute inset-0 bg-cover bg-center"
                     style={{
-                        backgroundImage: `url('/Gemini_Generated_Image_6wis8i6wis8i6wis.png')`
+                        backgroundImage: `url('/cta-beach.png')`
                     }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-b from-[var(--color-navy)]/30 via-transparent to-[var(--color-navy)]/40" />
@@ -79,7 +79,7 @@ export default function LookbookPage() {
                 <div className="relative h-[60vh] md:h-[80vh] overflow-hidden">
                     <div
                         className="absolute inset-0 bg-cover bg-center bg-fixed"
-                        style={{ backgroundImage: `url('${lookbookImages[3].src}')` }}
+                        style={{ backgroundImage: `url('/cta-beach.png')` }}
                     />
                     <div className="absolute inset-0 bg-[var(--color-navy)]/20" />
                     <div className="relative z-10 h-full flex items-center justify-center text-center px-6">

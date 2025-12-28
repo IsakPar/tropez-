@@ -5,7 +5,7 @@ export default function EditorialStrip() {
             <div
                 className="absolute inset-0 bg-cover bg-center bg-no-repeat"
                 style={{
-                    backgroundImage: `url('/Gemini_Generated_Image_nvjrtenvjrtenvjr.png')`,
+                    backgroundImage: `url('/cta-beach.png')`,
                 }}
             />
 
