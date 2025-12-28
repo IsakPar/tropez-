@@ -224,7 +224,7 @@ export default function CheckoutPage() {
 
                                 <button
                                     onClick={() => setStep(2)}
-                                    className="w-full mt-8 py-4 bg-[var(--color-navy)] text-white font-body text-sm tracking-luxury uppercase hover:bg-[var(--color-navy-dark)] transition-all rounded-lg"
+                                    className="w-full mt-10 py-4 bg-black text-white font-body text-sm tracking-luxury uppercase hover:bg-gray-800 transition-all"
                                 >
                                     Continue to Shipping
                                 </button>

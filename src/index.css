@@ -10,15 +10,15 @@
 
 /* Custom CSS Variables - Brand Colors */
 :root {
-  /* Primary Palette */
-  --color-sand: #F5F0E8;
-  --color-sand-light: #FAF8F5;
-  --color-cream: #FFFEF9;
+  /* Background Palette - Off-whites */
+  --color-sand: #F7F5F2;
+  --color-sand-light: #FAFAFA;
+  --color-cream: #FFFFFF;
 
-  /* Taupe Palette (formerly Navy/Walnut) */
-  --color-navy: #B7A996;
-  --color-navy-light: #C9BDAD;
-  --color-navy-dark: #9A8C7A;
+  /* Primary Text - Black/Dark Grey */
+  --color-navy: #1A1A1A;
+  --color-navy-light: #333333;
+  --color-navy-dark: #000000;
 
   /* Accent Colors */
   --color-terracotta: #C4836A;
@@ -26,9 +26,9 @@
   --color-gold: #B8976A;
 
   /* Neutrals */
-  --color-charcoal: #2C2C2C;
-  --color-gray: #6B6B6B;
-  --color-gray-light: #9A9A9A;
+  --color-charcoal: #1A1A1A;
+  --color-gray: #666666;
+  --color-gray-light: #999999;
 
   /* Typography */
   --font-heading: 'Cormorant Garamond', serif;
