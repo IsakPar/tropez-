@@ -1,15 +1,18 @@
 import { useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { getProductById, getProductsByCollection } from '../data/products'
+import { useCart } from '../context/CartContext'
 
 export default function ProductPage() {
     const { productId } = useParams()
     const product = getProductById(productId)
+    const { addItem, openCart } = useCart()
 
     const [selectedColor, setSelectedColor] = useState(product?.colors[0])
     const [selectedSize, setSelectedSize] = useState(null)
     const [activeImage, setActiveImage] = useState(0)
     const [showSizeGuide, setShowSizeGuide] = useState(false)
+    const [addedToCart, setAddedToCart] = useState(false)
 
     if (!product) {
         return (
@@ -27,6 +30,19 @@ export default function ProductPage() {
     const relatedProducts = getProductsByCollection(product.collection)
         .filter(p => p.id !== product.id)
         .slice(0, 4)
+
+    const handleAddToCart = () => {
+        if (!selectedSize || !selectedColor) return
+
+        addItem(product, selectedColor, selectedSize)
+        setAddedToCart(true)
+
+        // Show success state briefly, then open cart
+        setTimeout(() => {
+            openCart()
+            setAddedToCart(false)
+        }, 600)
+    }
 
     return (
         <div className="min-h-screen bg-[var(--color-cream)]">
@@ -158,13 +174,27 @@ export default function ProductPage() {
 
                         {/* Add to Bag */}
                         <button
-                            className={`w-full py-4 font-body text-sm tracking-luxury uppercase transition-all duration-300 mb-4 ${selectedSize
-                                    ? 'bg-[var(--color-navy)] text-white hover:bg-[var(--color-navy-dark)]'
-                                    : 'bg-[var(--color-gray-light)] text-white cursor-not-allowed'
+                            onClick={handleAddToCart}
+                            className={`w-full py-4 font-body text-sm tracking-luxury uppercase transition-all duration-300 mb-4 flex items-center justify-center gap-2 ${addedToCart
+                                    ? 'bg-[var(--color-terracotta)] text-white'
+                                    : selectedSize
+                                        ? 'bg-[var(--color-navy)] text-white hover:bg-[var(--color-navy-dark)]'
+                                        : 'bg-[var(--color-gray-light)] text-white cursor-not-allowed'
                                 }`}
                             disabled={!selectedSize}
                         >
-                            {selectedSize ? 'Add to Bag' : 'Select a Size'}
+                            {addedToCart ? (
+                                <>
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5">
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                                    </svg>
+                                    Added to Bag
+                                </>
+                            ) : selectedSize ? (
+                                'Add to Bag'
+                            ) : (
+                                'Select a Size'
+                            )}
                         </button>
 
                         {/* Wishlist */}
