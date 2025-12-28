@@ -1,0 +1,76 @@
+// Lookbook editorial data - lifestyle images with tagged products
+export const lookbookImages = [
+    {
+        id: 1,
+        src: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1920&q=80',
+        alt: 'Golden hour beach scene',
+        layout: 'full', // full-width
+        campaign: 'Summer 2025',
+        taggedProducts: ['riviera-bikini-top', 'riviera-bikini-bottom'],
+    },
+    {
+        id: 2,
+        src: 'https://images.unsplash.com/photo-1570976447640-ac859083963a?w=1200&q=80',
+        alt: 'Model in elegant swimwear',
+        layout: 'half-left',
+        taggedProducts: ['monaco-one-piece'],
+    },
+    {
+        id: 3,
+        src: 'https://images.unsplash.com/photo-1519046904884-53103b34b206?w=1200&q=80',
+        alt: 'Beach lifestyle',
+        layout: 'half-right',
+        taggedProducts: ['cannes-wrap-bottom'],
+    },
+    {
+        id: 4,
+        src: 'https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?w=1920&q=80',
+        alt: 'Mediterranean sunset',
+        layout: 'full',
+        quote: '"Effortless elegance, from dawn to dusk"',
+        taggedProducts: [],
+    },
+    {
+        id: 5,
+        src: 'https://images.unsplash.com/photo-1506929562872-bb421503ef21?w=1200&q=80',
+        alt: 'Resort poolside',
+        layout: 'third',
+        taggedProducts: ['saint-jean-coverup'],
+    },
+    {
+        id: 6,
+        src: 'https://images.unsplash.com/photo-1584483766114-2cea6facdf57?w=1200&q=80',
+        alt: 'Swimwear detail',
+        layout: 'third',
+        taggedProducts: ['riviera-bikini-top'],
+    },
+    {
+        id: 7,
+        src: 'https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?w=1200&q=80',
+        alt: 'Coastal view',
+        layout: 'third',
+        taggedProducts: ['nice-sarong'],
+    },
+    {
+        id: 8,
+        src: 'https://images.unsplash.com/photo-1520454974749-611b7248ffdb?w=1920&q=80',
+        alt: 'Beach waves',
+        layout: 'full',
+        campaign: 'The Riviera Collection',
+        taggedProducts: ['antibes-triangle-top', 'cannes-wrap-bottom'],
+    },
+    {
+        id: 9,
+        src: 'https://images.unsplash.com/photo-1505228395891-9a51e7e86bf6?w=1200&q=80',
+        alt: 'Luxury resort',
+        layout: 'two-thirds',
+        taggedProducts: ['monaco-one-piece', 'saint-jean-coverup'],
+    },
+    {
+        id: 10,
+        src: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&q=80',
+        alt: 'Detail shot',
+        layout: 'one-third',
+        taggedProducts: ['villefranche-bandeau'],
+    },
+]

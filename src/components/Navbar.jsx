@@ -8,8 +8,8 @@ export default function Navbar() {
     const location = useLocation()
     const { openCart, itemCount } = useCart()
 
-    // Check if we're on a page with a dark hero (home, collection)
-    const hasDarkHero = location.pathname === '/' || location.pathname.startsWith('/collection')
+    // Check if we're on a page with a dark hero (home, collection, lookbook)
+    const hasDarkHero = location.pathname === '/' || location.pathname.startsWith('/collection') || location.pathname === '/lookbook'
 
     useEffect(() => {
         const handleScroll = () => {
@@ -26,6 +26,7 @@ export default function Navbar() {
 
     const navLinks = [
         { name: 'Shop', path: '/shop' },
+        { name: 'Lookbook', path: '/lookbook' },
         { name: 'Collections', path: '/collection/the-riviera' },
         { name: 'About', path: '/#about' },
     ]
@@ -38,8 +39,8 @@ export default function Navbar() {
     return (
         <nav
             className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 ${scrolled
-                    ? 'bg-white/60 backdrop-blur-xl shadow-[0_2px_20px_rgba(0,0,0,0.06)] border-b border-white/20'
-                    : 'bg-transparent'
+                ? 'bg-white/60 backdrop-blur-xl shadow-[0_2px_20px_rgba(0,0,0,0.06)] border-b border-white/20'
+                : 'bg-transparent'
                 }`}
         >
             <div className="max-w-[1800px] mx-auto px-6 md:px-12 lg:px-20">

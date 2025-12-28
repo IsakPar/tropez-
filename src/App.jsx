@@ -7,6 +7,7 @@ import HomePage from './pages/HomePage'
 import ShopPage from './pages/ShopPage'
 import ProductPage from './pages/ProductPage'
 import CollectionPage from './pages/CollectionPage'
+import LookbookPage from './pages/LookbookPage'
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
               <Route path="/shop" element={<ShopPage />} />
               <Route path="/product/:productId" element={<ProductPage />} />
               <Route path="/collection/:collectionId" element={<CollectionPage />} />
+              <Route path="/lookbook" element={<LookbookPage />} />
             </Routes>
           </main>
           <Footer />
