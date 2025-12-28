@@ -1,4 +1,5 @@
-import { useState, useMemo, useCallback, useEffect } from 'react'
+import { useState, useMemo, useCallback } from 'react'
+import MannequinRenderer from './SizeGuide/Mannequin/MannequinRenderer'
 
 // Size chart data (in cm)
 const SIZE_CHART = {
@@ -12,60 +13,6 @@ const SIZE_CHART = {
 const SIZES = ['XS', 'S', 'M', 'L', 'XL']
 const CUP_SIZES = ['A', 'B', 'C', 'D', 'DD+']
 
-// Body type definitions with measurement ranges
-const BODY_TYPES = [
-    {
-        id: 'petite',
-        name: 'Petite',
-        image: '/mannequins/petite.png',
-        bustRange: [75, 84],
-        cupRange: ['A', 'B'],
-        waistRange: [55, 66],
-        hipsRange: [80, 92],
-        description: 'Smaller frame, XS-S',
-    },
-    {
-        id: 'slim',
-        name: 'Slim',
-        image: '/mannequins/slim.png',
-        bustRange: [80, 88],
-        cupRange: ['A', 'B', 'C'],
-        waistRange: [60, 70],
-        hipsRange: [85, 95],
-        description: 'Athletic build, S',
-    },
-    {
-        id: 'pear',
-        name: 'Pear',
-        image: '/mannequins/pear.png',
-        bustRange: [80, 90],
-        cupRange: ['B', 'C'],
-        waistRange: [62, 72],
-        hipsRange: [94, 108],
-        description: 'Curvier hips, S-M',
-    },
-    {
-        id: 'average',
-        name: 'Average',
-        image: '/mannequins/average.png',
-        bustRange: [86, 96],
-        cupRange: ['B', 'C', 'D'],
-        waistRange: [66, 76],
-        hipsRange: [92, 102],
-        description: 'Balanced, M',
-    },
-    {
-        id: 'busty',
-        name: 'Busty',
-        image: '/mannequins/busty.png',
-        bustRange: [92, 110],
-        cupRange: ['D', 'DD+'],
-        waistRange: [68, 82],
-        hipsRange: [94, 106],
-        description: 'Fuller bust, M-L',
-    },
-]
-
 // Default measurements
 const DEFAULT_MEASUREMENTS = {
     bust: 90,
@@ -74,7 +21,7 @@ const DEFAULT_MEASUREMENTS = {
     hips: 96,
 }
 
-// Measurement ranges for sliders
+// Measurement ranges
 const MEASUREMENT_RANGES = {
     bust: { min: 75, max: 110 },
     waist: { min: 55, max: 90 },
@@ -85,43 +32,8 @@ export default function InteractiveSizeGuide({ onSizeSelect, onClose }) {
     const [measurements, setMeasurements] = useState(DEFAULT_MEASUREMENTS)
     const [activeSlider, setActiveSlider] = useState(null)
     const [showHowToMeasure, setShowHowToMeasure] = useState(false)
-    const [mannequinLoaded, setMannequinLoaded] = useState(false)
 
-    // Find the best matching body type based on measurements
-    const selectedBodyType = useMemo(() => {
-        let bestMatch = BODY_TYPES[3] // Default to 'average'
-        let bestScore = Infinity
-
-        for (const bodyType of BODY_TYPES) {
-            let score = 0
-
-            // Bust score
-            const bustMid = (bodyType.bustRange[0] + bodyType.bustRange[1]) / 2
-            score += Math.abs(measurements.bust - bustMid)
-
-            // Cup score - prioritize matching cup size
-            if (!bodyType.cupRange.includes(measurements.cup)) {
-                score += 20 // Heavy penalty for wrong cup category
-            }
-
-            // Waist score
-            const waistMid = (bodyType.waistRange[0] + bodyType.waistRange[1]) / 2
-            score += Math.abs(measurements.waist - waistMid)
-
-            // Hips score
-            const hipsMid = (bodyType.hipsRange[0] + bodyType.hipsRange[1]) / 2
-            score += Math.abs(measurements.hips - hipsMid)
-
-            if (score < bestScore) {
-                bestScore = score
-                bestMatch = bodyType
-            }
-        }
-
-        return bestMatch
-    }, [measurements])
-
-    // Calculate recommended size based on measurements
+    // Calculate recommended size
     const recommendedSize = useMemo(() => {
         let bestMatch = null
         let bestScore = Infinity
@@ -150,7 +62,7 @@ export default function InteractiveSizeGuide({ onSizeSelect, onClose }) {
         return bestMatch
     }, [measurements])
 
-    // Calculate fit indicator for each measurement
+    // Calculate fit indicators
     const fitIndicators = useMemo(() => {
         if (!recommendedSize) return {}
 
@@ -174,114 +86,42 @@ export default function InteractiveSizeGuide({ onSizeSelect, onClose }) {
     }, [measurements, recommendedSize])
 
     const handleMeasurementChange = useCallback((key, value) => {
-        setMeasurements(prev => ({
-            ...prev,
-            [key]: value,
-        }))
+        setMeasurements(prev => ({ ...prev, [key]: value }))
     }, [])
 
     const handleCupChange = useCallback((cup) => {
-        setMeasurements(prev => ({
-            ...prev,
-            cup,
-        }))
+        setMeasurements(prev => ({ ...prev, cup }))
     }, [])
 
     const handleSelectSize = () => {
         if (recommendedSize && onSizeSelect) {
             onSizeSelect(recommendedSize)
         }
-        if (onClose) {
-            onClose()
-        }
+        if (onClose) onClose()
     }
 
     return (
         <div className="flex flex-col lg:flex-row gap-8 lg:gap-12">
-            {/* Left: Mannequin Display */}
+            {/* Left: SVG Mannequin */}
             <div className="flex-1 flex flex-col items-center">
-                <div className="relative w-full max-w-[300px] aspect-[3/5] bg-gradient-to-b from-[var(--color-sand-light)] to-white rounded-2xl overflow-hidden">
-                    {/* Loading state */}
-                    {!mannequinLoaded && (
-                        <div className="absolute inset-0 flex items-center justify-center">
-                            <div className="w-8 h-8 border-2 border-[var(--color-terracotta)] border-t-transparent rounded-full animate-spin" />
-                        </div>
-                    )}
-
-                    {/* Mannequin Image */}
-                    <img
-                        src={selectedBodyType.image}
-                        alt={`${selectedBodyType.name} body type`}
-                        className={`w-full h-full object-contain transition-opacity duration-500 ${mannequinLoaded ? 'opacity-100' : 'opacity-0'
-                            }`}
-                        onLoad={() => setMannequinLoaded(true)}
+                <div className="relative w-full max-w-[280px] bg-gradient-to-b from-[var(--color-sand-light)] to-white rounded-2xl p-4 shadow-inner">
+                    <MannequinRenderer
+                        bust={measurements.bust}
+                        waist={measurements.waist}
+                        hips={measurements.hips}
+                        activeZone={activeSlider}
                     />
-
-                    {/* Body Type Label */}
-                    <div className="absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur-sm rounded-lg p-3 shadow-sm">
-                        <p className="font-body text-xs text-[var(--color-gray)] mb-1">Your body type</p>
-                        <p className="font-heading text-[var(--color-navy)] text-lg">{selectedBodyType.name}</p>
-                        <p className="font-body text-xs text-[var(--color-gray)]">{selectedBodyType.description}</p>
-                    </div>
-
-                    {/* Measurement Zone Indicators */}
-                    {activeSlider && (
-                        <div className="absolute inset-0 pointer-events-none">
-                            {activeSlider === 'bust' && (
-                                <div className="absolute top-[28%] left-1/2 -translate-x-1/2 w-[70%] h-[1px] bg-[var(--color-terracotta)]">
-                                    <div className="absolute -left-1 -top-1 w-2 h-2 bg-[var(--color-terracotta)] rounded-full" />
-                                    <div className="absolute -right-1 -top-1 w-2 h-2 bg-[var(--color-terracotta)] rounded-full" />
-                                    <span className="absolute left-1/2 -translate-x-1/2 -top-6 font-body text-xs text-[var(--color-terracotta)] bg-white px-2 py-1 rounded">
-                                        Bust: {measurements.bust}cm
-                                    </span>
-                                </div>
-                            )}
-                            {activeSlider === 'waist' && (
-                                <div className="absolute top-[42%] left-1/2 -translate-x-1/2 w-[50%] h-[1px] bg-[var(--color-terracotta)]">
-                                    <div className="absolute -left-1 -top-1 w-2 h-2 bg-[var(--color-terracotta)] rounded-full" />
-                                    <div className="absolute -right-1 -top-1 w-2 h-2 bg-[var(--color-terracotta)] rounded-full" />
-                                    <span className="absolute left-1/2 -translate-x-1/2 -top-6 font-body text-xs text-[var(--color-terracotta)] bg-white px-2 py-1 rounded">
-                                        Waist: {measurements.waist}cm
-                                    </span>
-                                </div>
-                            )}
-                            {activeSlider === 'hips' && (
-                                <div className="absolute top-[52%] left-1/2 -translate-x-1/2 w-[65%] h-[1px] bg-[var(--color-terracotta)]">
-                                    <div className="absolute -left-1 -top-1 w-2 h-2 bg-[var(--color-terracotta)] rounded-full" />
-                                    <div className="absolute -right-1 -top-1 w-2 h-2 bg-[var(--color-terracotta)] rounded-full" />
-                                    <span className="absolute left-1/2 -translate-x-1/2 -top-6 font-body text-xs text-[var(--color-terracotta)] bg-white px-2 py-1 rounded">
-                                        Hips: {measurements.hips}cm
-                                    </span>
-                                </div>
-                            )}
-                        </div>
-                    )}
                 </div>
 
-                {/* Body Type Selector (manual override) */}
-                <div className="mt-6 w-full max-w-[300px]">
-                    <p className="font-body text-xs text-[var(--color-gray)] mb-2 text-center">Or select your body type</p>
-                    <div className="flex justify-center gap-2">
-                        {BODY_TYPES.map((type) => (
-                            <button
-                                key={type.id}
-                                onClick={() => {
-                                    // Set measurements to match this body type
-                                    setMeasurements({
-                                        bust: Math.round((type.bustRange[0] + type.bustRange[1]) / 2),
-                                        cup: type.cupRange[Math.floor(type.cupRange.length / 2)],
-                                        waist: Math.round((type.waistRange[0] + type.waistRange[1]) / 2),
-                                        hips: Math.round((type.hipsRange[0] + type.hipsRange[1]) / 2),
-                                    })
-                                }}
-                                className={`px-3 py-1.5 font-body text-xs rounded-full transition-all ${selectedBodyType.id === type.id
-                                        ? 'bg-[var(--color-terracotta)] text-white'
-                                        : 'bg-[var(--color-sand)] text-[var(--color-navy)] hover:bg-[var(--color-sand-dark)]'
-                                    }`}
-                            >
-                                {type.name}
-                            </button>
-                        ))}
+                {/* Legend */}
+                <div className="mt-6 flex items-center gap-6 font-body text-xs text-[var(--color-gray)]">
+                    <div className="flex items-center gap-2">
+                        <div className="w-3 h-3 rounded-full bg-[var(--color-terracotta)]" />
+                        <span>Active Zone</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                        <div className="w-3 h-3 rounded-full border-2 border-[#c4b5a9]" />
+                        <span>Body Outline</span>
                     </div>
                 </div>
             </div>
@@ -294,11 +134,11 @@ export default function InteractiveSizeGuide({ onSizeSelect, onClose }) {
                         Find Your Perfect Fit
                     </h3>
                     <p className="font-body text-[var(--color-gray)] text-sm leading-relaxed">
-                        Enter your measurements to find your ideal size. The mannequin will update to show a body type similar to yours.
+                        Adjust the sliders and watch the mannequin transform in real-time to match your body shape.
                     </p>
                 </div>
 
-                {/* How to Measure Link */}
+                {/* How to Measure */}
                 <button
                     onClick={() => setShowHowToMeasure(!showHowToMeasure)}
                     className="font-body text-sm text-[var(--color-terracotta)] flex items-center gap-2 hover:underline"
@@ -306,25 +146,21 @@ export default function InteractiveSizeGuide({ onSizeSelect, onClose }) {
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z" />
                     </svg>
-                    {showHowToMeasure ? 'Hide measuring guide' : 'How to measure yourself'}
+                    {showHowToMeasure ? 'Hide guide' : 'How to measure yourself'}
                 </button>
 
-                {/* How to Measure Info */}
                 {showHowToMeasure && (
                     <div className="p-5 bg-[var(--color-sand-light)] rounded-xl space-y-3 font-body text-sm text-[var(--color-gray)] border border-[var(--color-sand)]">
-                        <p><strong className="text-[var(--color-navy)]">Bust:</strong> Measure around the fullest part of your chest, keeping the tape level.</p>
-                        <p><strong className="text-[var(--color-navy)]">Cup Size:</strong> The difference between your bust and underbust measurements determines cup size.</p>
-                        <p><strong className="text-[var(--color-navy)]">Waist:</strong> Measure around your natural waistline, the narrowest part of your torso.</p>
-                        <p><strong className="text-[var(--color-navy)]">Hips:</strong> Measure around the fullest part of your hips, about 20cm below your waist.</p>
+                        <p><strong className="text-[var(--color-navy)]">Bust:</strong> Measure around the fullest part of your chest.</p>
+                        <p><strong className="text-[var(--color-navy)]">Waist:</strong> Measure your natural waistline, the narrowest part.</p>
+                        <p><strong className="text-[var(--color-navy)]">Hips:</strong> Measure the fullest part, about 20cm below waist.</p>
                     </div>
                 )}
 
                 {/* Cup Size Selector */}
                 <div>
                     <div className="flex items-center justify-between mb-3">
-                        <label className="font-body text-sm font-medium text-[var(--color-navy)]">
-                            Cup Size
-                        </label>
+                        <label className="font-body text-sm font-medium text-[var(--color-navy)]">Cup Size</label>
                         <span className="font-heading text-xl text-[var(--color-navy)]">{measurements.cup}</span>
                     </div>
                     <div className="flex gap-2">
@@ -379,13 +215,9 @@ export default function InteractiveSizeGuide({ onSizeSelect, onClose }) {
 
                 {/* Size Recommendation */}
                 <div className="p-6 bg-gradient-to-br from-[var(--color-sand)] to-[var(--color-sand-light)] rounded-xl">
-                    <p className="font-body text-sm text-[var(--color-gray)] mb-3">
-                        We recommend
-                    </p>
+                    <p className="font-body text-sm text-[var(--color-gray)] mb-3">We recommend</p>
                     <div className="flex items-center gap-6">
-                        <span className="font-heading text-[var(--color-navy)] text-5xl">
-                            {recommendedSize}
-                        </span>
+                        <span className="font-heading text-[var(--color-navy)] text-5xl">{recommendedSize}</span>
                         <div className="flex-1">
                             <div className="flex gap-1.5">
                                 {SIZES.map((size) => (
@@ -402,7 +234,7 @@ export default function InteractiveSizeGuide({ onSizeSelect, onClose }) {
                                 {SIZES.map((size) => (
                                     <span
                                         key={size}
-                                        className={`font-body text-xs transition-all duration-500 ${size === recommendedSize
+                                        className={`font-body text-xs transition-all ${size === recommendedSize
                                                 ? 'text-[var(--color-terracotta)] font-semibold'
                                                 : 'text-[var(--color-gray)]'
                                             }`}
@@ -430,7 +262,7 @@ export default function InteractiveSizeGuide({ onSizeSelect, onClose }) {
                             }[indicator.status]
 
                             return (
-                                <div key={key} className={`text-center p-3 ${config.bg} rounded-xl transition-all duration-300`}>
+                                <div key={key} className={`text-center p-3 ${config.bg} rounded-xl`}>
                                     <p className="font-body text-xs text-[var(--color-gray)] capitalize mb-1">{key}</p>
                                     <p className={`font-body text-sm font-semibold ${config.color} flex items-center justify-center gap-1`}>
                                         <span>{config.icon}</span>
@@ -442,10 +274,10 @@ export default function InteractiveSizeGuide({ onSizeSelect, onClose }) {
                     </div>
                 </div>
 
-                {/* Select Size Button */}
+                {/* Select Button */}
                 <button
                     onClick={handleSelectSize}
-                    className="w-full py-4 bg-[var(--color-navy)] text-white font-body text-sm tracking-luxury uppercase hover:bg-[var(--color-navy-dark)] transition-all duration-300 rounded-lg hover:shadow-lg"
+                    className="w-full py-4 bg-[var(--color-navy)] text-white font-body text-sm tracking-luxury uppercase hover:bg-[var(--color-navy-dark)] transition-all rounded-lg hover:shadow-lg"
                 >
                     Select Size {recommendedSize}
                 </button>
@@ -454,19 +286,19 @@ export default function InteractiveSizeGuide({ onSizeSelect, onClose }) {
     )
 }
 
-// Measurement Slider Component
+// Slider Component
 function MeasurementSlider({ label, value, min, max, onChange, onFocus, onBlur, isActive }) {
     const percentage = ((value - min) / (max - min)) * 100
 
     return (
-        <div className={`transition-all duration-300 ${isActive ? 'scale-[1.01]' : ''}`}>
+        <div className={`transition-all duration-200 ${isActive ? 'scale-[1.01]' : ''}`}>
             <div className="flex items-center justify-between mb-2">
-                <label className={`font-body text-sm font-medium transition-colors duration-300 ${isActive ? 'text-[var(--color-terracotta)]' : 'text-[var(--color-navy)]'
+                <label className={`font-body text-sm font-medium transition-colors ${isActive ? 'text-[var(--color-terracotta)]' : 'text-[var(--color-navy)]'
                     }`}>
                     {label}
                 </label>
                 <div className="flex items-baseline gap-1">
-                    <span className={`font-heading text-xl tabular-nums transition-colors duration-300 ${isActive ? 'text-[var(--color-terracotta)]' : 'text-[var(--color-navy)]'
+                    <span className={`font-heading text-xl tabular-nums transition-colors ${isActive ? 'text-[var(--color-terracotta)]' : 'text-[var(--color-navy)]'
                         }`}>
                         {value}
                     </span>
@@ -474,41 +306,36 @@ function MeasurementSlider({ label, value, min, max, onChange, onFocus, onBlur, 
                 </div>
             </div>
 
-            <div className="relative h-3 bg-gradient-to-r from-[var(--color-sand)] to-[var(--color-sand-light)] rounded-full overflow-hidden shadow-inner">
-                {/* Track fill */}
+            <div className="relative h-3 bg-gradient-to-r from-[var(--color-sand)] to-[var(--color-sand-light)] rounded-full shadow-inner">
                 <div
-                    className={`absolute left-0 top-0 h-full rounded-full transition-all duration-150 ${isActive ? 'bg-gradient-to-r from-[var(--color-terracotta)] to-[#d4705c]' : 'bg-[var(--color-navy)]/25'
+                    className={`absolute left-0 top-0 h-full rounded-full transition-all duration-100 ${isActive ? 'bg-gradient-to-r from-[var(--color-terracotta)] to-[#d4705c]' : 'bg-[var(--color-navy)]/25'
                         }`}
                     style={{ width: `${percentage}%` }}
                 />
 
-                {/* Thumb indicator */}
                 <div
-                    className={`absolute top-1/2 -translate-y-1/2 w-5 h-5 rounded-full border-2 transition-all duration-150 shadow-md ${isActive
+                    className={`absolute top-1/2 -translate-y-1/2 w-5 h-5 rounded-full border-2 shadow-md transition-all duration-100 ${isActive
                             ? 'bg-white border-[var(--color-terracotta)] scale-110'
                             : 'bg-white border-[var(--color-navy)]/30'
                         }`}
                     style={{ left: `calc(${percentage}% - 10px)` }}
                 />
 
-                {/* Hidden range input */}
                 <input
                     type="range"
                     min={min}
                     max={max}
                     value={value}
                     onChange={(e) => onChange(parseInt(e.target.value, 10))}
-                    onFocus={onFocus}
-                    onBlur={onBlur}
                     onMouseDown={onFocus}
                     onMouseUp={onBlur}
+                    onMouseLeave={onBlur}
                     onTouchStart={onFocus}
                     onTouchEnd={onBlur}
                     className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
                 />
             </div>
 
-            {/* Range labels */}
             <div className="flex justify-between mt-1">
                 <span className="font-body text-[10px] text-[var(--color-gray)]">{min} cm</span>
                 <span className="font-body text-[10px] text-[var(--color-gray)]">{max} cm</span>
