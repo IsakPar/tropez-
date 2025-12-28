@@ -29,7 +29,7 @@ export default function Navbar() {
     // Split navigation links for left and right
     const leftLinks = [
         { name: 'Shop', path: '/shop' },
-        { name: 'Collections', path: '/collection/the-riviera' },
+        { name: 'Collections', path: '/collections' },
     ]
 
     const rightLinks = [
@@ -47,7 +47,7 @@ export default function Navbar() {
     // Check if current page matches link
     const isActive = (path) => {
         if (path === '/shop') return location.pathname === '/shop'
-        if (path.startsWith('/collection')) return location.pathname.startsWith('/collection')
+        if (path === '/collections') return location.pathname === '/collections' || location.pathname.startsWith('/collection/')
         if (path === '/lookbook') return location.pathname === '/lookbook'
         return false
     }

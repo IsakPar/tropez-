@@ -1,5 +1,5 @@
 import { useParams, Link } from 'react-router-dom'
-import { getCollectionById, getProductsByCollection } from '../data/products'
+import { getCollectionById, getProductsByCollection, collections } from '../data/products'
 import WishlistButton from '../components/WishlistButton'
 
 export default function CollectionPage() {
@@ -12,8 +12,8 @@ export default function CollectionPage() {
             <div className="min-h-screen bg-[var(--color-cream)] pt-32 pb-24 flex items-center justify-center">
                 <div className="text-center">
                     <h1 className="font-heading text-[var(--color-navy)] text-3xl mb-4">Collection Not Found</h1>
-                    <Link to="/shop" className="font-body text-[var(--color-terracotta)] underline">
-                        Back to Shop
+                    <Link to="/collections" className="font-body text-[var(--color-terracotta)] underline">
+                        View All Collections
                     </Link>
                 </div>
             </div>
@@ -23,17 +23,23 @@ export default function CollectionPage() {
     return (
         <div className="min-h-screen bg-[var(--color-cream)]">
             {/* Hero Banner */}
-            <section className="relative h-[70vh] overflow-hidden">
+            <section className="relative h-[60vh] overflow-hidden">
                 <div
                     className="absolute inset-0 bg-cover bg-center"
-                    style={{ backgroundImage: `url('${collection.heroImage}')` }}
+                    style={{ backgroundImage: `url('/collections-hero.jpg')` }}
                 />
-                <div className="absolute inset-0 bg-[var(--color-navy)]/30" />
+                <div className="absolute inset-0 bg-[var(--color-navy)]/25" />
 
                 <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-6">
-                    <p className="font-body text-white/80 text-xs tracking-wide-luxury uppercase mb-4">
-                        Collection
-                    </p>
+                    <Link
+                        to="/collections"
+                        className="font-body text-white/80 text-xs tracking-wide-luxury uppercase mb-4 hover:text-white transition-colors flex items-center gap-2"
+                    >
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+                        </svg>
+                        All Collections
+                    </Link>
                     <h1 className="font-heading text-white text-5xl md:text-6xl lg:text-7xl font-light mb-6">
                         {collection.name}
                     </h1>
@@ -43,8 +49,28 @@ export default function CollectionPage() {
                 </div>
             </section>
 
+            {/* Collection Navigation */}
+            <section className="py-8 px-6 md:px-12 lg:px-20 border-b border-[var(--color-sand)]">
+                <div className="max-w-[1800px] mx-auto">
+                    <div className="flex items-center justify-center gap-8 md:gap-12 overflow-x-auto">
+                        {collections.map((col) => (
+                            <Link
+                                key={col.id}
+                                to={`/collection/${col.id}`}
+                                className={`font-body text-sm tracking-luxury uppercase whitespace-nowrap pb-2 border-b-2 transition-all duration-300 ${col.id === collectionId
+                                        ? 'text-[var(--color-navy)] border-[var(--color-navy)]'
+                                        : 'text-[var(--color-gray)] border-transparent hover:text-[var(--color-navy)]'
+                                    }`}
+                            >
+                                {col.name}
+                            </Link>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
             {/* Products Grid */}
-            <section className="py-24 md:py-32 px-6 md:px-12 lg:px-20">
+            <section className="py-16 md:py-24 px-6 md:px-12 lg:px-20">
                 <div className="max-w-[1800px] mx-auto">
                     <div className="flex items-center justify-between mb-12">
                         <p className="font-body text-[var(--color-gray)] text-sm">
@@ -118,6 +144,18 @@ export default function CollectionPage() {
                             </Link>
                         ))}
                     </div>
+
+                    {/* Empty State */}
+                    {products.length === 0 && (
+                        <div className="text-center py-20">
+                            <p className="font-body text-[var(--color-gray)] text-lg mb-4">
+                                No products in this collection yet.
+                            </p>
+                            <Link to="/shop" className="font-body text-[var(--color-terracotta)] underline">
+                                Browse All Products
+                            </Link>
+                        </div>
+                    )}
                 </div>
             </section>
         </div>

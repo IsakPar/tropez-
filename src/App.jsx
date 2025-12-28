@@ -10,6 +10,7 @@ import NewsletterPopup from './components/NewsletterPopup'
 import HomePage from './pages/HomePage'
 import ShopPage from './pages/ShopPage'
 import ProductPage from './pages/ProductPage'
+import CollectionsPage from './pages/CollectionsPage'
 import CollectionPage from './pages/CollectionPage'
 import LookbookPage from './pages/LookbookPage'
 import CheckoutPage from './pages/CheckoutPage'
@@ -32,6 +33,7 @@ function App() {
                   <Route path="/" element={<HomePage />} />
                   <Route path="/shop" element={<ShopPage />} />
                   <Route path="/product/:productId" element={<ProductPage />} />
+                  <Route path="/collections" element={<CollectionsPage />} />
                   <Route path="/collection/:collectionId" element={<CollectionPage />} />
                   <Route path="/lookbook" element={<LookbookPage />} />
                   <Route path="/checkout" element={<CheckoutPage />} />
