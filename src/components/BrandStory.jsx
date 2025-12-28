@@ -4,11 +4,11 @@ export default function BrandStory() {
             <div className="max-w-[1800px] mx-auto">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
                     {/* Image */}
-                    <div className="relative aspect-[4/5] overflow-hidden">
+                    <div className="relative aspect-[4/3] overflow-hidden rounded-lg">
                         <div
                             className="absolute inset-0 bg-cover bg-center"
                             style={{
-                                backgroundImage: `url('https://images.unsplash.com/photo-1506929562872-bb421503ef21?w=800&q=80')`,
+                                backgroundImage: `url('/Gemini_Generated_Image_w2g165w2g165w2g1.png')`,
                             }}
                         />
                     </div>

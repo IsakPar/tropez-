@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import { products, categories } from '../data/products'
+import WishlistButton from '../components/WishlistButton'
 
 export default function ShopPage() {
     const [searchParams, setSearchParams] = useSearchParams()
@@ -27,8 +28,8 @@ export default function ShopPage() {
                             key={category.id}
                             onClick={() => setSearchParams(category.slug === 'all' ? {} : { category: category.slug })}
                             className={`px-6 py-2.5 font-body text-sm tracking-wide transition-all duration-300 border ${activeCategory === category.slug
-                                    ? 'bg-[var(--color-navy)] text-white border-[var(--color-navy)]'
-                                    : 'bg-transparent text-[var(--color-navy)] border-[var(--color-navy)]/20 hover:border-[var(--color-navy)]/50'
+                                ? 'bg-[var(--color-navy)] text-white border-[var(--color-navy)]'
+                                : 'bg-transparent text-[var(--color-navy)] border-[var(--color-navy)]/20 hover:border-[var(--color-navy)]/50'
                                 }`}
                         >
                             {category.name}
@@ -47,11 +48,12 @@ export default function ShopPage() {
                             className="group cursor-pointer"
                         >
                             {/* Image Container */}
-                            <div className="relative aspect-[3/4] overflow-hidden mb-4 bg-[var(--color-sand-light)]">
+                            <div className="relative aspect-square overflow-hidden mb-3 bg-[var(--color-sand-light)]">
                                 <img
                                     src={product.images[0]}
                                     alt={product.name}
-                                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                                    loading="lazy"
+                                    className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
                                 />
 
                                 {/* Badges */}
@@ -66,6 +68,15 @@ export default function ShopPage() {
                                             Bestseller
                                         </span>
                                     )}
+                                </div>
+
+                                {/* Wishlist Button */}
+                                <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                    <WishlistButton
+                                        productId={product.id}
+                                        size="md"
+                                        className="bg-white/90 backdrop-blur-sm p-2 rounded-full text-[var(--color-navy)] hover:text-[var(--color-terracotta)]"
+                                    />
                                 </div>
 
                                 {/* Quick View Overlay */}

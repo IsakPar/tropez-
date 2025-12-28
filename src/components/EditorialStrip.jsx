@@ -1,11 +1,11 @@
 export default function EditorialStrip() {
     return (
-        <section className="relative h-[70vh] md:h-[80vh] overflow-hidden">
+        <section className="relative h-[50vh] md:h-[60vh] overflow-hidden">
             {/* Background Image */}
             <div
                 className="absolute inset-0 bg-cover bg-center bg-no-repeat"
                 style={{
-                    backgroundImage: `url('https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?w=1920&q=80')`,
+                    backgroundImage: `url('/Gemini_Generated_Image_nvjrtenvjrtenvjr.png')`,
                 }}
             />
 

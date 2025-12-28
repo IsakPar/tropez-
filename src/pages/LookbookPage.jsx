@@ -13,7 +13,7 @@ export default function LookbookPage() {
                 <div
                     className="absolute inset-0 bg-cover bg-center"
                     style={{
-                        backgroundImage: `url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1920&q=80')`
+                        backgroundImage: `url('/Gemini_Generated_Image_6wis8i6wis8i6wis.png')`
                     }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-b from-[var(--color-navy)]/30 via-transparent to-[var(--color-navy)]/40" />
@@ -195,7 +195,8 @@ function LookbookImage({ image, isHovered, onHover, onLeave, aspectRatio = 'vide
             <img
                 src={image.src}
                 alt={image.alt}
-                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                loading="lazy"
+                className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
             />
 
             {/* Overlay */}

@@ -65,11 +65,11 @@ export default function ProductPage() {
                     {/* Image Gallery */}
                     <div className="space-y-4">
                         {/* Main Image */}
-                        <div className="aspect-[3/4] bg-[var(--color-sand-light)] overflow-hidden">
+                        <div className="aspect-square bg-[var(--color-sand-light)] overflow-hidden">
                             <img
                                 src={product.images[activeImage]}
                                 alt={product.name}
-                                className="w-full h-full object-cover"
+                                className="w-full h-full object-cover object-center"
                             />
                         </div>
 
@@ -253,11 +253,12 @@ export default function ProductPage() {
                                     to={`/product/${relatedProduct.id}`}
                                     className="group cursor-pointer"
                                 >
-                                    <div className="relative aspect-[3/4] overflow-hidden mb-4 bg-[var(--color-sand-light)]">
+                                    <div className="relative aspect-square overflow-hidden mb-3 bg-[var(--color-sand-light)]">
                                         <img
                                             src={relatedProduct.images[0]}
                                             alt={relatedProduct.name}
-                                            className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                                            loading="lazy"
+                                            className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
                                         />
                                     </div>
                                     <h3 className="font-heading text-[var(--color-navy)] text-lg font-normal mb-1">

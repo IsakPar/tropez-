@@ -14,8 +14,8 @@ export const products = [
         ],
         sizes: ['XS', 'S', 'M', 'L', 'XL'],
         images: [
-            'https://images.unsplash.com/photo-1584483766114-2cea6facdf57?w=800&q=80',
-            'https://images.unsplash.com/photo-1570976447640-ac859083963a?w=800&q=80',
+            '/Gemini_Generated_Image_6wis8i6wis8i6wis.png',
+            '/Gemini_Generated_Image_9qtkwb9qtkwb9qtk.png',
         ],
         fitType: 'regular',
         isBestseller: true,
@@ -35,7 +35,8 @@ export const products = [
         ],
         sizes: ['XS', 'S', 'M', 'L', 'XL'],
         images: [
-            'https://images.unsplash.com/photo-1519046904884-53103b34b206?w=800&q=80',
+            '/Gemini_Generated_Image_npmwp1npmwp1npmw.png',
+            '/Gemini_Generated_Image_6wis8i6wis8i6wis.png',
         ],
         fitType: 'regular',
         isBestseller: true,
@@ -54,8 +55,8 @@ export const products = [
         ],
         sizes: ['XS', 'S', 'M', 'L', 'XL'],
         images: [
-            'https://images.unsplash.com/photo-1570976447640-ac859083963a?w=800&q=80',
-            'https://images.unsplash.com/photo-1584483766114-2cea6facdf57?w=800&q=80',
+            '/Gemini_Generated_Image_nvjrtenvjrtenvjr.png',
+            '/Gemini_Generated_Image_w2g165w2g165w2g1.png',
         ],
         fitType: 'tight',
         isBestseller: true,
@@ -74,7 +75,8 @@ export const products = [
         ],
         sizes: ['XS', 'S', 'M', 'L', 'XL'],
         images: [
-            'https://images.unsplash.com/photo-1519046904884-53103b34b206?w=800&q=80',
+            '/Gemini_Generated_Image_w2g165w2g165w2g1.png',
+            '/Gemini_Generated_Image_9qtkwb9qtkwb9qtk.png',
         ],
         fitType: 'relaxed',
         isBestseller: false,
@@ -93,7 +95,8 @@ export const products = [
         ],
         sizes: ['XS/S', 'M/L', 'XL/XXL'],
         images: [
-            'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80',
+            '/Gemini_Generated_Image_9qtkwb9qtkwb9qtk.png',
+            '/Gemini_Generated_Image_npmwp1npmwp1npmw.png',
         ],
         fitType: 'relaxed',
         isBestseller: true,
@@ -112,7 +115,8 @@ export const products = [
         ],
         sizes: ['XS', 'S', 'M', 'L', 'XL'],
         images: [
-            'https://images.unsplash.com/photo-1584483766114-2cea6facdf57?w=800&q=80',
+            '/Gemini_Generated_Image_npmwp1npmwp1npmw.png',
+            '/Gemini_Generated_Image_nvjrtenvjrtenvjr.png',
         ],
         fitType: 'regular',
         isBestseller: false,
@@ -130,7 +134,8 @@ export const products = [
         ],
         sizes: ['One Size'],
         images: [
-            'https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?w=800&q=80',
+            '/Gemini_Generated_Image_w2g165w2g165w2g1.png',
+            '/Gemini_Generated_Image_6wis8i6wis8i6wis.png',
         ],
         fitType: 'relaxed',
         isBestseller: false,
@@ -149,7 +154,8 @@ export const products = [
         ],
         sizes: ['XS', 'S', 'M', 'L', 'XL'],
         images: [
-            'https://images.unsplash.com/photo-1570976447640-ac859083963a?w=800&q=80',
+            '/Gemini_Generated_Image_nvjrtenvjrtenvjr.png',
+            '/Gemini_Generated_Image_npmwp1npmwp1npmw.png',
         ],
         fitType: 'tight',
         isBestseller: false,
@@ -163,16 +169,16 @@ export const collections = [
         name: 'The Riviera',
         slug: 'the-riviera',
         description: 'Timeless silhouettes inspired by the golden age of the French Riviera. Classic cuts, refined details, and colors that capture the essence of Mediterranean summers.',
-        image: 'https://images.unsplash.com/photo-1570976447640-ac859083963a?w=1200&q=80',
-        heroImage: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1920&q=80',
+        image: '/Gemini_Generated_Image_6wis8i6wis8i6wis.png',
+        heroImage: '/Gemini_Generated_Image_9qtkwb9qtkwb9qtk.png',
     },
     {
         id: 'cote-dazur',
         name: "Côte d'Azur",
         slug: 'cote-dazur',
         description: 'Bold and refined pieces for the modern woman. Sophisticated cuts with unexpected details that make a statement without saying a word.',
-        image: 'https://images.unsplash.com/photo-1519046904884-53103b34b206?w=1200&q=80',
-        heroImage: 'https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?w=1920&q=80',
+        image: '/Gemini_Generated_Image_nvjrtenvjrtenvjr.png',
+        heroImage: '/Gemini_Generated_Image_w2g165w2g165w2g1.png',
     },
 ]
 

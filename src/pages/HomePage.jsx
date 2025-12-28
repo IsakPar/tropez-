@@ -3,6 +3,7 @@ import FeaturedCollections from '../components/FeaturedCollections'
 import EditorialStrip from '../components/EditorialStrip'
 import Bestsellers from '../components/Bestsellers'
 import BrandStory from '../components/BrandStory'
+import InstagramFeed from '../components/InstagramFeed'
 
 export default function HomePage() {
     return (
@@ -12,6 +13,7 @@ export default function HomePage() {
             <EditorialStrip />
             <Bestsellers />
             <BrandStory />
+            <InstagramFeed />
         </>
     )
 }

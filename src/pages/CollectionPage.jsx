@@ -1,5 +1,6 @@
 import { useParams, Link } from 'react-router-dom'
 import { getCollectionById, getProductsByCollection } from '../data/products'
+import WishlistButton from '../components/WishlistButton'
 
 export default function CollectionPage() {
     const { collectionId } = useParams()
@@ -59,11 +60,12 @@ export default function CollectionPage() {
                                 className="group cursor-pointer"
                             >
                                 {/* Image Container */}
-                                <div className="relative aspect-[3/4] overflow-hidden mb-4 bg-[var(--color-sand-light)]">
+                                <div className="relative aspect-square overflow-hidden mb-3 bg-[var(--color-sand-light)]">
                                     <img
                                         src={product.images[0]}
                                         alt={product.name}
-                                        className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                                        loading="lazy"
+                                        className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
                                     />
 
                                     {/* Badges */}
@@ -73,6 +75,15 @@ export default function CollectionPage() {
                                                 New
                                             </span>
                                         )}
+                                    </div>
+
+                                    {/* Wishlist Button */}
+                                    <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                        <WishlistButton
+                                            productId={product.id}
+                                            size="md"
+                                            className="bg-white/90 backdrop-blur-sm p-2 rounded-full text-[var(--color-navy)] hover:text-[var(--color-terracotta)]"
+                                        />
                                     </div>
 
                                     {/* Quick View */}

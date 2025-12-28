@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { useCart } from '../context/CartContext'
+import CurrencySelector from './CurrencySelector'
 
 export default function Navbar() {
     const [scrolled, setScrolled] = useState(false)
@@ -67,8 +68,12 @@ export default function Navbar() {
                         ))}
                     </div>
 
-                    {/* Right Side - Cart */}
-                    <div className="flex items-center gap-4">
+                    {/* Right Side - Currency & Cart */}
+                    <div className="flex items-center gap-6">
+                        {/* Currency Selector (Desktop) */}
+                        <div className={`hidden md:block ${textColorClass}`}>
+                            <CurrencySelector />
+                        </div>
                         {/* Cart Icon */}
                         <button
                             onClick={openCart}
@@ -92,7 +97,10 @@ export default function Navbar() {
 
                             {/* Cart Badge */}
                             {itemCount > 0 && (
-                                <span className="absolute -top-1.5 -right-1.5 w-5 h-5 bg-[var(--color-terracotta)] text-white text-xs font-body flex items-center justify-center rounded-full">
+                                <span
+                                    key={itemCount}
+                                    className="absolute -top-1.5 -right-1.5 w-5 h-5 bg-[var(--color-terracotta)] text-white text-xs font-body flex items-center justify-center rounded-full animate-[bounce_0.5s_ease-out]"
+                                >
                                     {itemCount > 9 ? '9+' : itemCount}
                                 </span>
                             )}

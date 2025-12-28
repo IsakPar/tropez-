@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { getBestsellers } from '../data/products'
+import WishlistButton from './WishlistButton'
 
 export default function Bestsellers() {
     const products = getBestsellers()
@@ -44,17 +45,27 @@ export default function Bestsellers() {
                             className="group cursor-pointer"
                         >
                             {/* Image Container */}
-                            <div className="relative aspect-[3/4] overflow-hidden mb-4">
+                            <div className="relative aspect-square overflow-hidden mb-3 bg-white rounded-sm">
                                 <img
                                     src={product.images[0]}
                                     alt={product.name}
-                                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                                    loading="lazy"
+                                    className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
                                 />
+
+                                {/* Wishlist Button */}
+                                <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                    <WishlistButton
+                                        productId={product.id}
+                                        size="md"
+                                        className="bg-white/90 backdrop-blur-sm p-2 rounded-full text-[var(--color-navy)] hover:text-[var(--color-terracotta)]"
+                                    />
+                                </div>
                             </div>
 
                             {/* Product Info */}
                             <div className="text-center md:text-left">
-                                <h3 className="font-heading text-[var(--color-navy)] text-lg md:text-xl font-normal mb-1">
+                                <h3 className="font-heading text-[var(--color-navy)] text-lg md:text-xl font-normal mb-1 group-hover:text-[var(--color-terracotta)] transition-colors">
                                     {product.name}
                                 </h3>
                                 <p className="font-body text-[var(--color-gray)] text-sm">

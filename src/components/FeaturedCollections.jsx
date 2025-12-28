@@ -14,48 +14,52 @@ export default function FeaturedCollections() {
                 </h2>
             </div>
 
-            {/* Collection Grid */}
+            {/* Collection Grid - Text Below */}
             <div className="max-w-[1800px] mx-auto">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
                     {collections.map((collection) => (
                         <Link
                             key={collection.id}
                             to={`/collection/${collection.id}`}
-                            className="group relative aspect-[4/5] overflow-hidden cursor-pointer"
+                            className="group cursor-pointer"
                         >
-                            {/* Image */}
-                            <div
-                                className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
-                                style={{ backgroundImage: `url('${collection.image}')` }}
-                            />
+                            {/* Image Container */}
+                            <div className="relative aspect-[4/3] overflow-hidden bg-[var(--color-sand-light)] mb-6">
+                                <img
+                                    src={collection.image}
+                                    alt={collection.name}
+                                    loading="lazy"
+                                    className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
+                                />
 
-                            {/* Overlay */}
-                            <div className="absolute inset-0 bg-[var(--color-navy)]/20 transition-opacity duration-500 group-hover:bg-[var(--color-navy)]/30" />
+                                {/* Subtle gradient overlay for depth */}
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                            </div>
 
-                            {/* Content */}
-                            <div className="absolute inset-0 flex flex-col justify-end p-8 md:p-12">
-                                <p className="font-body text-white/80 text-xs tracking-luxury uppercase mb-2">
+                            {/* Text Content Below Image */}
+                            <div className="space-y-3">
+                                <p className="font-body text-[var(--color-terracotta)] text-xs tracking-wide-luxury uppercase">
                                     {collection.description.split('.')[0]}
                                 </p>
-                                <h3 className="font-heading text-white text-3xl md:text-4xl font-light">
+                                <h3 className="font-heading text-[var(--color-navy)] text-3xl md:text-4xl font-light group-hover:text-[var(--color-terracotta)] transition-colors duration-300">
                                     {collection.name}
                                 </h3>
 
-                                {/* Arrow */}
-                                <div className="mt-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                                    <span className="inline-flex items-center gap-2 text-white text-sm tracking-wide uppercase">
-                                        View Collection
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            fill="none"
-                                            viewBox="0 0 24 24"
-                                            strokeWidth={1.5}
-                                            stroke="currentColor"
-                                            className="w-4 h-4"
-                                        >
-                                            <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
-                                        </svg>
+                                {/* Arrow Link */}
+                                <div className="flex items-center gap-2 pt-2">
+                                    <span className="font-body text-[var(--color-navy)] text-sm tracking-luxury uppercase border-b border-transparent group-hover:border-[var(--color-navy)] pb-0.5 transition-all duration-300">
+                                        Explore Collection
                                     </span>
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        strokeWidth={1.5}
+                                        stroke="currentColor"
+                                        className="w-4 h-4 text-[var(--color-navy)] transition-transform duration-300 group-hover:translate-x-1"
+                                    >
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
+                                    </svg>
                                 </div>
                             </div>
                         </Link>

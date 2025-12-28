@@ -180,11 +180,13 @@ export default function CartDrawer() {
                             </p>
 
                             {/* Checkout Button */}
-                            <button
-                                className="w-full py-4 bg-[var(--color-navy)] text-white font-body text-sm tracking-luxury uppercase hover:bg-[var(--color-navy-dark)] transition-colors"
+                            <Link
+                                to="/checkout"
+                                onClick={closeCart}
+                                className="block w-full py-4 bg-[var(--color-navy)] text-white font-body text-sm tracking-luxury uppercase hover:bg-[var(--color-navy-dark)] transition-colors text-center"
                             >
                                 Checkout
-                            </button>
+                            </Link>
 
                             {/* Continue Shopping */}
                             <button

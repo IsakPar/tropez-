@@ -104,7 +104,7 @@ export default function InteractiveSizeGuide({ onSizeSelect, onClose }) {
         <div className="flex flex-col lg:flex-row gap-8 lg:gap-12">
             {/* Left: SVG Mannequin */}
             <div className="flex-1 flex flex-col items-center">
-                <div className="relative w-full max-w-[280px] bg-gradient-to-b from-[var(--color-sand-light)] to-white rounded-2xl p-4 shadow-inner">
+                <div className="relative w-full max-w-[380px] bg-gradient-to-b from-[var(--color-sand-light)] to-white rounded-2xl p-6 shadow-inner">
                     <MannequinRenderer
                         bust={measurements.bust}
                         waist={measurements.waist}
@@ -169,8 +169,8 @@ export default function InteractiveSizeGuide({ onSizeSelect, onClose }) {
                                 key={cup}
                                 onClick={() => handleCupChange(cup)}
                                 className={`flex-1 py-3 font-body text-sm rounded-lg transition-all ${measurements.cup === cup
-                                        ? 'bg-[var(--color-navy)] text-white shadow-md'
-                                        : 'bg-[var(--color-sand)] text-[var(--color-navy)] hover:bg-[var(--color-sand-dark)]'
+                                    ? 'bg-[var(--color-navy)] text-white shadow-md'
+                                    : 'bg-[var(--color-sand)] text-[var(--color-navy)] hover:bg-[var(--color-sand-dark)]'
                                     }`}
                             >
                                 {cup}
@@ -224,8 +224,8 @@ export default function InteractiveSizeGuide({ onSizeSelect, onClose }) {
                                     <div
                                         key={size}
                                         className={`flex-1 h-2.5 rounded-full transition-all duration-500 ${size === recommendedSize
-                                                ? 'bg-[var(--color-terracotta)] scale-y-125'
-                                                : 'bg-[var(--color-navy)]/10'
+                                            ? 'bg-[var(--color-terracotta)] scale-y-125'
+                                            : 'bg-[var(--color-navy)]/10'
                                             }`}
                                     />
                                 ))}
@@ -235,8 +235,8 @@ export default function InteractiveSizeGuide({ onSizeSelect, onClose }) {
                                     <span
                                         key={size}
                                         className={`font-body text-xs transition-all ${size === recommendedSize
-                                                ? 'text-[var(--color-terracotta)] font-semibold'
-                                                : 'text-[var(--color-gray)]'
+                                            ? 'text-[var(--color-terracotta)] font-semibold'
+                                            : 'text-[var(--color-gray)]'
                                             }`}
                                     >
                                         {size}
@@ -315,8 +315,8 @@ function MeasurementSlider({ label, value, min, max, onChange, onFocus, onBlur, 
 
                 <div
                     className={`absolute top-1/2 -translate-y-1/2 w-5 h-5 rounded-full border-2 shadow-md transition-all duration-100 ${isActive
-                            ? 'bg-white border-[var(--color-terracotta)] scale-110'
-                            : 'bg-white border-[var(--color-navy)]/30'
+                        ? 'bg-white border-[var(--color-terracotta)] scale-110'
+                        : 'bg-white border-[var(--color-navy)]/30'
                         }`}
                     style={{ left: `calc(${percentage}% - 10px)` }}
                 />
