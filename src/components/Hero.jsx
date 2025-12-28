@@ -17,8 +17,8 @@ export default function Hero() {
                 <div
                     className="w-full h-full bg-cover bg-center bg-no-repeat animate-[kenBurns_20s_ease-in-out_infinite_alternate]"
                     style={{
-                        backgroundImage: `linear-gradient(to bottom, rgba(26, 43, 74, 0.3), rgba(26, 43, 74, 0.1)), 
-                              url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1920&q=80')`,
+                        backgroundImage: `linear-gradient(to bottom, rgba(26, 43, 74, 0.25), rgba(26, 43, 74, 0.15)), 
+                              url('/hero-beach.jpg')`,
                     }}
                 />
             </div>
