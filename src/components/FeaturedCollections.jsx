@@ -1,17 +1,5 @@
-const collections = [
-    {
-        id: 1,
-        name: 'The Riviera',
-        description: 'Timeless silhouettes',
-        image: 'https://images.unsplash.com/photo-1570976447640-ac859083963a?w=800&q=80',
-    },
-    {
-        id: 2,
-        name: 'Côte d\'Azur',
-        description: 'Bold & refined',
-        image: 'https://images.unsplash.com/photo-1519046904884-53103b34b206?w=800&q=80',
-    },
-]
+import { Link } from 'react-router-dom'
+import { collections } from '../data/products'
 
 export default function FeaturedCollections() {
     return (
@@ -30,9 +18,9 @@ export default function FeaturedCollections() {
             <div className="max-w-[1800px] mx-auto">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
                     {collections.map((collection) => (
-                        <a
+                        <Link
                             key={collection.id}
-                            href={`#collection-${collection.id}`}
+                            to={`/collection/${collection.id}`}
                             className="group relative aspect-[4/5] overflow-hidden cursor-pointer"
                         >
                             {/* Image */}
@@ -47,7 +35,7 @@ export default function FeaturedCollections() {
                             {/* Content */}
                             <div className="absolute inset-0 flex flex-col justify-end p-8 md:p-12">
                                 <p className="font-body text-white/80 text-xs tracking-luxury uppercase mb-2">
-                                    {collection.description}
+                                    {collection.description.split('.')[0]}
                                 </p>
                                 <h3 className="font-heading text-white text-3xl md:text-4xl font-light">
                                     {collection.name}
@@ -70,7 +58,7 @@ export default function FeaturedCollections() {
                                     </span>
                                 </div>
                             </div>
-                        </a>
+                        </Link>
                     ))}
                 </div>
             </div>

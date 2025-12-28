@@ -1,24 +1,27 @@
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar'
-import Hero from './components/Hero'
-import FeaturedCollections from './components/FeaturedCollections'
-import EditorialStrip from './components/EditorialStrip'
-import Bestsellers from './components/Bestsellers'
-import BrandStory from './components/BrandStory'
 import Footer from './components/Footer'
+import HomePage from './pages/HomePage'
+import ShopPage from './pages/ShopPage'
+import ProductPage from './pages/ProductPage'
+import CollectionPage from './pages/CollectionPage'
 
 function App() {
   return (
-    <div className="min-h-screen">
-      <Navbar />
-      <main>
-        <Hero />
-        <FeaturedCollections />
-        <EditorialStrip />
-        <Bestsellers />
-        <BrandStory />
-      </main>
-      <Footer />
-    </div>
+    <BrowserRouter>
+      <div className="min-h-screen">
+        <Navbar />
+        <main>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/shop" element={<ShopPage />} />
+            <Route path="/product/:productId" element={<ProductPage />} />
+            <Route path="/collection/:collectionId" element={<CollectionPage />} />
+          </Routes>
+        </main>
+        <Footer />
+      </div>
+    </BrowserRouter>
   )
 }
 

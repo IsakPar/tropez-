@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+
 export default function Hero() {
     return (
         <section className="relative h-screen w-full overflow-hidden">
@@ -27,8 +29,8 @@ export default function Hero() {
                 </h1>
 
                 {/* CTA Button */}
-                <a
-                    href="#shop"
+                <Link
+                    to="/shop"
                     className="group inline-flex items-center gap-3 mt-4"
                 >
                     <span className="font-body text-white text-sm tracking-luxury uppercase border-b border-white/50 pb-1 transition-all duration-300 group-hover:border-white">
@@ -44,7 +46,7 @@ export default function Hero() {
                     >
                         <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
                     </svg>
-                </a>
+                </Link>
             </div>
 
             {/* Scroll Indicator */}

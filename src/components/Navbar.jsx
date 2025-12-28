@@ -1,8 +1,13 @@
 import { useState, useEffect } from 'react'
+import { Link, useLocation } from 'react-router-dom'
 
 export default function Navbar() {
     const [scrolled, setScrolled] = useState(false)
     const [menuOpen, setMenuOpen] = useState(false)
+    const location = useLocation()
+
+    // Check if we're on a page with a dark hero (home, collection)
+    const hasDarkHero = location.pathname === '/' || location.pathname.startsWith('/collection')
 
     useEffect(() => {
         const handleScroll = () => {
@@ -12,43 +17,56 @@ export default function Navbar() {
         return () => window.removeEventListener('scroll', handleScroll)
     }, [])
 
+    // Reset scroll state on route change
+    useEffect(() => {
+        setScrolled(window.scrollY > 50)
+    }, [location.pathname])
+
+    const navLinks = [
+        { name: 'Shop', path: '/shop' },
+        { name: 'Collections', path: '/collection/the-riviera' },
+        { name: 'About', path: '/#about' },
+    ]
+
+    // Determine text color based on scroll state and page type
+    const textColorClass = scrolled || menuOpen || !hasDarkHero
+        ? 'text-[var(--color-navy)]'
+        : 'text-white'
+
     return (
         <nav
             className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled
-                    ? 'bg-[var(--color-cream)]/95 backdrop-blur-sm shadow-sm'
+                    ? 'bg-white/60 backdrop-blur-xl shadow-[0_2px_20px_rgba(0,0,0,0.06)] border-b border-white/20'
                     : 'bg-transparent'
                 }`}
         >
             <div className="max-w-[1800px] mx-auto px-6 md:px-12 lg:px-20">
                 <div className="flex items-center justify-between h-20 md:h-24">
                     {/* Logo */}
-                    <a href="/" className="relative z-10">
+                    <Link to="/" className="relative z-10">
                         <h1
-                            className={`font-heading text-2xl md:text-3xl font-normal tracking-wide transition-colors duration-500 ${scrolled || menuOpen ? 'text-[var(--color-navy)]' : 'text-white'
-                                }`}
+                            className={`font-heading text-2xl md:text-3xl font-normal tracking-wide transition-colors duration-500 ${textColorClass}`}
                         >
                             ST. TROPEZ
                         </h1>
-                    </a>
+                    </Link>
 
                     {/* Desktop Navigation */}
                     <div className="hidden md:flex items-center gap-12">
-                        {['Shop', 'Lookbook', 'About'].map((item) => (
-                            <a
-                                key={item}
-                                href={`#${item.toLowerCase()}`}
-                                className={`font-body text-sm tracking-luxury uppercase transition-colors duration-300 hover:opacity-70 ${scrolled ? 'text-[var(--color-navy)]' : 'text-white'
-                                    }`}
+                        {navLinks.map((link) => (
+                            <Link
+                                key={link.name}
+                                to={link.path}
+                                className={`font-body text-sm tracking-luxury uppercase transition-colors duration-300 hover:opacity-70 ${textColorClass}`}
                             >
-                                {item}
-                            </a>
+                                {link.name}
+                            </Link>
                         ))}
                     </div>
 
                     {/* Cart Icon */}
                     <button
-                        className={`hidden md:block transition-colors duration-300 ${scrolled ? 'text-[var(--color-navy)]' : 'text-white'
-                            }`}
+                        className={`hidden md:block transition-colors duration-300 ${textColorClass}`}
                         aria-label="Shopping bag"
                     >
                         <svg
@@ -70,7 +88,7 @@ export default function Navbar() {
                     {/* Mobile Menu Button */}
                     <button
                         onClick={() => setMenuOpen(!menuOpen)}
-                        className={`md:hidden relative z-10 transition-colors duration-300 ${scrolled || menuOpen ? 'text-[var(--color-navy)]' : 'text-white'
+                        className={`md:hidden relative z-10 transition-colors duration-300 ${scrolled || menuOpen ? 'text-[var(--color-navy)]' : textColorClass
                             }`}
                         aria-label="Menu"
                     >
@@ -98,15 +116,15 @@ export default function Navbar() {
                     }`}
             >
                 <div className="flex flex-col items-center justify-center h-full gap-8">
-                    {['Shop', 'Lookbook', 'About'].map((item) => (
-                        <a
-                            key={item}
-                            href={`#${item.toLowerCase()}`}
+                    {navLinks.map((link) => (
+                        <Link
+                            key={link.name}
+                            to={link.path}
                             onClick={() => setMenuOpen(false)}
                             className="font-heading text-3xl text-[var(--color-navy)] tracking-wide"
                         >
-                            {item}
-                        </a>
+                            {link.name}
+                        </Link>
                     ))}
                 </div>
             </div>
