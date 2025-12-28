@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { getProductById, getProductsByCollection } from '../data/products'
 import { useCart } from '../context/CartContext'
+import InteractiveSizeGuide from '../components/InteractiveSizeGuide'
 
 export default function ProductPage() {
     const { productId } = useParams()
@@ -80,8 +81,8 @@ export default function ProductPage() {
                                         key={index}
                                         onClick={() => setActiveImage(index)}
                                         className={`w-20 h-24 overflow-hidden transition-all duration-300 ${activeImage === index
-                                                ? 'ring-2 ring-[var(--color-navy)]'
-                                                : 'opacity-60 hover:opacity-100'
+                                            ? 'ring-2 ring-[var(--color-navy)]'
+                                            : 'opacity-60 hover:opacity-100'
                                             }`}
                                     >
                                         <img src={image} alt="" className="w-full h-full object-cover" />
@@ -133,8 +134,8 @@ export default function ProductPage() {
                                         key={color.name}
                                         onClick={() => setSelectedColor(color)}
                                         className={`w-10 h-10 rounded-full transition-all duration-300 ${selectedColor?.name === color.name
-                                                ? 'ring-2 ring-offset-2 ring-[var(--color-navy)]'
-                                                : 'hover:scale-110'
+                                            ? 'ring-2 ring-offset-2 ring-[var(--color-navy)]'
+                                            : 'hover:scale-110'
                                             }`}
                                         style={{ backgroundColor: color.hex }}
                                         title={color.name}
@@ -162,8 +163,8 @@ export default function ProductPage() {
                                         key={size}
                                         onClick={() => setSelectedSize(size)}
                                         className={`min-w-[3rem] px-4 py-3 font-body text-sm transition-all duration-300 border ${selectedSize === size
-                                                ? 'bg-[var(--color-navy)] text-white border-[var(--color-navy)]'
-                                                : 'bg-transparent text-[var(--color-navy)] border-[var(--color-navy)]/20 hover:border-[var(--color-navy)]'
+                                            ? 'bg-[var(--color-navy)] text-white border-[var(--color-navy)]'
+                                            : 'bg-transparent text-[var(--color-navy)] border-[var(--color-navy)]/20 hover:border-[var(--color-navy)]'
                                             }`}
                                     >
                                         {size}
@@ -176,10 +177,10 @@ export default function ProductPage() {
                         <button
                             onClick={handleAddToCart}
                             className={`w-full py-4 font-body text-sm tracking-luxury uppercase transition-all duration-300 mb-4 flex items-center justify-center gap-2 ${addedToCart
-                                    ? 'bg-[var(--color-terracotta)] text-white'
-                                    : selectedSize
-                                        ? 'bg-[var(--color-navy)] text-white hover:bg-[var(--color-navy-dark)]'
-                                        : 'bg-[var(--color-gray-light)] text-white cursor-not-allowed'
+                                ? 'bg-[var(--color-terracotta)] text-white'
+                                : selectedSize
+                                    ? 'bg-[var(--color-navy)] text-white hover:bg-[var(--color-navy-dark)]'
+                                    : 'bg-[var(--color-gray-light)] text-white cursor-not-allowed'
                                 }`}
                             disabled={!selectedSize}
                         >
@@ -272,23 +273,23 @@ export default function ProductPage() {
                 )}
             </div>
 
-            {/* Size Guide Modal Placeholder */}
+            {/* Size Guide Modal */}
             {showSizeGuide && (
                 <div
-                    className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center p-6"
+                    className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center p-4 md:p-6"
                     onClick={() => setShowSizeGuide(false)}
                 >
                     <div
-                        className="bg-white max-w-4xl w-full max-h-[90vh] overflow-auto p-8 md:p-12"
+                        className="bg-white max-w-5xl w-full max-h-[90vh] overflow-auto p-6 md:p-10 lg:p-12 rounded-lg"
                         onClick={e => e.stopPropagation()}
                     >
-                        <div className="flex items-center justify-between mb-8">
-                            <h2 className="font-heading text-[var(--color-navy)] text-2xl md:text-3xl">
+                        <div className="flex items-center justify-between mb-6 md:mb-8">
+                            <h2 className="font-heading text-[var(--color-navy)] text-xl md:text-2xl lg:text-3xl">
                                 Find Your Perfect Fit
                             </h2>
                             <button
                                 onClick={() => setShowSizeGuide(false)}
-                                className="text-[var(--color-navy)] hover:opacity-70"
+                                className="text-[var(--color-navy)] hover:opacity-70 ml-4"
                             >
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -296,72 +297,10 @@ export default function ProductPage() {
                             </button>
                         </div>
 
-                        <div className="text-center py-16 border-2 border-dashed border-[var(--color-navy)]/20 rounded-lg">
-                            <div className="mb-4">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1} stroke="currentColor" className="w-16 h-16 mx-auto text-[var(--color-terracotta)]">
-                                    <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
-                                </svg>
-                            </div>
-                            <h3 className="font-heading text-[var(--color-navy)] text-xl mb-2">
-                                Interactive Size Guide
-                            </h3>
-                            <p className="font-body text-[var(--color-gray)] max-w-md mx-auto">
-                                The animated mannequin with adjustable measurements will be built here.
-                                Drag the sliders to visualize how this piece fits your unique body shape.
-                            </p>
-                            <p className="font-body text-[var(--color-terracotta)] text-sm mt-4">
-                                Coming Soon
-                            </p>
-                        </div>
-
-                        {/* Traditional Size Chart */}
-                        <div className="mt-8">
-                            <h3 className="font-heading text-[var(--color-navy)] text-lg mb-4">Size Chart</h3>
-                            <div className="overflow-x-auto">
-                                <table className="w-full font-body text-sm">
-                                    <thead>
-                                        <tr className="border-b border-[var(--color-navy)]/10">
-                                            <th className="py-3 px-4 text-left text-[var(--color-navy)]">Size</th>
-                                            <th className="py-3 px-4 text-left text-[var(--color-navy)]">Bust (cm)</th>
-                                            <th className="py-3 px-4 text-left text-[var(--color-navy)]">Waist (cm)</th>
-                                            <th className="py-3 px-4 text-left text-[var(--color-navy)]">Hips (cm)</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody className="text-[var(--color-gray)]">
-                                        <tr className="border-b border-[var(--color-navy)]/5">
-                                            <td className="py-3 px-4">XS</td>
-                                            <td className="py-3 px-4">80-84</td>
-                                            <td className="py-3 px-4">60-64</td>
-                                            <td className="py-3 px-4">86-90</td>
-                                        </tr>
-                                        <tr className="border-b border-[var(--color-navy)]/5">
-                                            <td className="py-3 px-4">S</td>
-                                            <td className="py-3 px-4">84-88</td>
-                                            <td className="py-3 px-4">64-68</td>
-                                            <td className="py-3 px-4">90-94</td>
-                                        </tr>
-                                        <tr className="border-b border-[var(--color-navy)]/5">
-                                            <td className="py-3 px-4">M</td>
-                                            <td className="py-3 px-4">88-92</td>
-                                            <td className="py-3 px-4">68-72</td>
-                                            <td className="py-3 px-4">94-98</td>
-                                        </tr>
-                                        <tr className="border-b border-[var(--color-navy)]/5">
-                                            <td className="py-3 px-4">L</td>
-                                            <td className="py-3 px-4">92-96</td>
-                                            <td className="py-3 px-4">72-76</td>
-                                            <td className="py-3 px-4">98-102</td>
-                                        </tr>
-                                        <tr>
-                                            <td className="py-3 px-4">XL</td>
-                                            <td className="py-3 px-4">96-100</td>
-                                            <td className="py-3 px-4">76-80</td>
-                                            <td className="py-3 px-4">102-106</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
+                        <InteractiveSizeGuide
+                            onSizeSelect={(size) => setSelectedSize(size)}
+                            onClose={() => setShowSizeGuide(false)}
+                        />
                     </div>
                 </div>
             )}
