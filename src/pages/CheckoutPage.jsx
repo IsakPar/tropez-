@@ -234,102 +234,103 @@ export default function CheckoutPage() {
                         {/* Step 2: Shipping */}
                         {step === 2 && (
                             <div className="bg-white rounded-2xl p-8 shadow-sm">
-                                <h2 className="font-heading text-2xl text-black mb-6">Shipping Information</h2>
+                                <h2 className="font-heading text-2xl text-black mb-10">Shipping Information</h2>
 
-                                <div className="grid sm:grid-cols-2 gap-5">
-                                    <div>
-                                        <label className="block font-body text-sm text-black mb-2">First Name *</label>
+                                <div className="grid sm:grid-cols-2 gap-x-8 gap-y-6">
+                                    <div className="relative">
+                                        <label className="block font-body text-xs text-gray-500 uppercase tracking-wide mb-1">First Name *</label>
                                         <input
                                             type="text"
                                             name="firstName"
                                             value={shippingInfo.firstName}
                                             onChange={handleShippingChange}
-                                            className="w-full px-4 py-3 border border-[var(--color-sand)] rounded-lg font-body text-black focus:outline-none focus:border-black transition-colors"
+                                            className="w-full bg-transparent py-2 font-body text-black text-lg border-0 border-b-2 border-gray-300 focus:border-black focus:outline-none transition-colors"
                                             required
                                         />
                                     </div>
-                                    <div>
-                                        <label className="block font-body text-sm text-black mb-2">Last Name *</label>
+                                    <div className="relative">
+                                        <label className="block font-body text-xs text-gray-500 uppercase tracking-wide mb-1">Last Name *</label>
                                         <input
                                             type="text"
                                             name="lastName"
                                             value={shippingInfo.lastName}
                                             onChange={handleShippingChange}
-                                            className="w-full px-4 py-3 border border-[var(--color-sand)] rounded-lg font-body text-black focus:outline-none focus:border-black transition-colors"
+                                            className="w-full bg-transparent py-2 font-body text-black text-lg border-0 border-b-2 border-gray-300 focus:border-black focus:outline-none transition-colors"
                                             required
                                         />
                                     </div>
-                                    <div className="sm:col-span-2">
-                                        <label className="block font-body text-sm text-black mb-2">Email *</label>
+                                    <div className="sm:col-span-2 relative">
+                                        <label className="block font-body text-xs text-gray-500 uppercase tracking-wide mb-1">Email *</label>
                                         <input
                                             type="email"
                                             name="email"
                                             value={shippingInfo.email}
                                             onChange={handleShippingChange}
-                                            className="w-full px-4 py-3 border border-[var(--color-sand)] rounded-lg font-body text-black focus:outline-none focus:border-black transition-colors"
+                                            className="w-full bg-transparent py-2 font-body text-black text-lg border-0 border-b-2 border-gray-300 focus:border-black focus:outline-none transition-colors"
                                             required
                                         />
                                     </div>
-                                    <div className="sm:col-span-2">
-                                        <label className="block font-body text-sm text-black mb-2">Phone</label>
+                                    <div className="sm:col-span-2 relative">
+                                        <label className="block font-body text-xs text-gray-500 uppercase tracking-wide mb-1">Phone</label>
                                         <input
                                             type="tel"
                                             name="phone"
                                             value={shippingInfo.phone}
                                             onChange={handleShippingChange}
-                                            className="w-full px-4 py-3 border border-[var(--color-sand)] rounded-lg font-body text-black focus:outline-none focus:border-black transition-colors"
+                                            className="w-full bg-transparent py-2 font-body text-black text-lg border-0 border-b-2 border-gray-300 focus:border-black focus:outline-none transition-colors"
                                         />
                                     </div>
-                                    <div className="sm:col-span-2">
-                                        <label className="block font-body text-sm text-black mb-2">Address *</label>
+                                    <div className="sm:col-span-2 relative">
+                                        <label className="block font-body text-xs text-gray-500 uppercase tracking-wide mb-1">Address *</label>
                                         <input
                                             type="text"
                                             name="address"
                                             value={shippingInfo.address}
                                             onChange={handleShippingChange}
-                                            className="w-full px-4 py-3 border border-[var(--color-sand)] rounded-lg font-body text-black focus:outline-none focus:border-black transition-colors"
+                                            className="w-full bg-transparent py-2 font-body text-black text-lg border-0 border-b-2 border-gray-300 focus:border-black focus:outline-none transition-colors"
                                             required
                                         />
                                     </div>
-                                    <div className="sm:col-span-2">
-                                        <label className="block font-body text-sm text-black mb-2">Apartment, suite, etc.</label>
+                                    <div className="sm:col-span-2 relative">
+                                        <label className="block font-body text-xs text-gray-500 uppercase tracking-wide mb-1">Apartment, suite, etc.</label>
                                         <input
                                             type="text"
                                             name="apartment"
                                             value={shippingInfo.apartment}
                                             onChange={handleShippingChange}
-                                            className="w-full px-4 py-3 border border-[var(--color-sand)] rounded-lg font-body text-black focus:outline-none focus:border-black transition-colors"
+                                            className="w-full bg-transparent py-2 font-body text-black text-lg border-0 border-b-2 border-gray-300 focus:border-black focus:outline-none transition-colors"
                                         />
                                     </div>
-                                    <div>
-                                        <label className="block font-body text-sm text-black mb-2">City *</label>
+                                    <div className="relative">
+                                        <label className="block font-body text-xs text-gray-500 uppercase tracking-wide mb-1">City *</label>
                                         <input
                                             type="text"
                                             name="city"
                                             value={shippingInfo.city}
                                             onChange={handleShippingChange}
-                                            className="w-full px-4 py-3 border border-[var(--color-sand)] rounded-lg font-body text-black focus:outline-none focus:border-black transition-colors"
+                                            className="w-full bg-transparent py-2 font-body text-black text-lg border-0 border-b-2 border-gray-300 focus:border-black focus:outline-none transition-colors"
                                             required
                                         />
                                     </div>
-                                    <div>
-                                        <label className="block font-body text-sm text-black mb-2">Postal Code *</label>
+                                    <div className="relative">
+                                        <label className="block font-body text-xs text-gray-500 uppercase tracking-wide mb-1">Postal Code *</label>
                                         <input
                                             type="text"
                                             name="postalCode"
                                             value={shippingInfo.postalCode}
                                             onChange={handleShippingChange}
-                                            className="w-full px-4 py-3 border border-[var(--color-sand)] rounded-lg font-body text-black focus:outline-none focus:border-black transition-colors"
+                                            className="w-full bg-transparent py-2 font-body text-black text-lg border-0 border-b-2 border-gray-300 focus:border-black focus:outline-none transition-colors"
                                             required
                                         />
                                     </div>
-                                    <div className="sm:col-span-2">
-                                        <label className="block font-body text-sm text-black mb-2">Country *</label>
+                                    <div className="sm:col-span-2 relative">
+                                        <label className="block font-body text-xs text-gray-500 uppercase tracking-wide mb-1">Country *</label>
                                         <select
                                             name="country"
                                             value={shippingInfo.country}
                                             onChange={handleShippingChange}
-                                            className="w-full px-4 py-3 border border-[var(--color-sand)] rounded-lg font-body text-black focus:outline-none focus:border-black transition-colors bg-white"
+                                            className="w-full bg-transparent py-2 font-body text-black text-lg border-0 border-b-2 border-gray-300 focus:border-black focus:outline-none transition-colors cursor-pointer appearance-none"
+                                            style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E")`, backgroundPosition: 'right 0 center', backgroundRepeat: 'no-repeat', backgroundSize: '1.5em' }}
                                         >
                                             <option>France</option>
                                             <option>United Kingdom</option>
@@ -341,16 +342,16 @@ export default function CheckoutPage() {
                                     </div>
                                 </div>
 
-                                <div className="flex gap-4 mt-8">
+                                <div className="flex gap-4 mt-12">
                                     <button
                                         onClick={() => setStep(1)}
-                                        className="px-8 py-4 border border-black text-black font-body text-sm tracking-luxury uppercase hover:bg-black hover:text-white transition-all rounded-lg"
+                                        className="px-8 py-4 border border-black text-black font-body text-sm tracking-luxury uppercase hover:bg-black hover:text-white transition-all"
                                     >
                                         Back
                                     </button>
                                     <button
                                         onClick={() => setStep(3)}
-                                        className="flex-1 py-4 bg-black text-white font-body text-sm tracking-luxury uppercase hover:bg-gray-800 transition-all rounded-lg"
+                                        className="flex-1 py-4 bg-black text-white font-body text-sm tracking-luxury uppercase hover:bg-gray-800 transition-all"
                                     >
                                         Continue to Payment
                                     </button>
@@ -361,10 +362,10 @@ export default function CheckoutPage() {
                         {/* Step 3: Payment */}
                         {step === 3 && (
                             <div className="bg-white rounded-2xl p-8 shadow-sm">
-                                <h2 className="font-heading text-2xl text-black mb-6">Payment Details</h2>
+                                <h2 className="font-heading text-2xl text-black mb-10">Payment Details</h2>
 
                                 {/* Card Preview */}
-                                <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl p-6 mb-8 text-white">
+                                <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl p-6 mb-10 text-white">
                                     <div className="flex justify-between items-start mb-8">
                                         <div className="w-12 h-8 bg-gradient-to-br from-amber-200 to-amber-400 rounded opacity-80" />
                                         <svg className="w-10 h-10 opacity-80" viewBox="0 0 48 48" fill="currentColor">
@@ -387,9 +388,9 @@ export default function CheckoutPage() {
                                     </div>
                                 </div>
 
-                                <div className="space-y-5">
-                                    <div>
-                                        <label className="block font-body text-sm text-black mb-2">Card Number *</label>
+                                <div className="space-y-6">
+                                    <div className="relative">
+                                        <label className="block font-body text-xs text-gray-500 uppercase tracking-wide mb-1">Card Number *</label>
                                         <input
                                             type="text"
                                             name="cardNumber"
@@ -397,24 +398,24 @@ export default function CheckoutPage() {
                                             onChange={handlePaymentChange}
                                             placeholder="1234 5678 9012 3456"
                                             maxLength={19}
-                                            className="w-full px-4 py-3 border border-[var(--color-sand)] rounded-lg font-body text-black placeholder:text-gray-400 focus:outline-none focus:border-black transition-colors"
+                                            className="w-full bg-transparent py-2 font-body text-black text-lg border-0 border-b-2 border-gray-300 focus:border-black focus:outline-none transition-colors placeholder:text-gray-400"
                                             required
                                         />
                                     </div>
-                                    <div>
-                                        <label className="block font-body text-sm text-black mb-2">Name on Card *</label>
+                                    <div className="relative">
+                                        <label className="block font-body text-xs text-gray-500 uppercase tracking-wide mb-1">Name on Card *</label>
                                         <input
                                             type="text"
                                             name="cardName"
                                             value={paymentInfo.cardName}
                                             onChange={handlePaymentChange}
-                                            className="w-full px-4 py-3 border border-[var(--color-sand)] rounded-lg font-body text-black focus:outline-none focus:border-black transition-colors"
+                                            className="w-full bg-transparent py-2 font-body text-black text-lg border-0 border-b-2 border-gray-300 focus:border-black focus:outline-none transition-colors"
                                             required
                                         />
                                     </div>
-                                    <div className="grid grid-cols-2 gap-5">
-                                        <div>
-                                            <label className="block font-body text-sm text-black mb-2">Expiry *</label>
+                                    <div className="grid grid-cols-2 gap-8">
+                                        <div className="relative">
+                                            <label className="block font-body text-xs text-gray-500 uppercase tracking-wide mb-1">Expiry *</label>
                                             <input
                                                 type="text"
                                                 name="expiry"
@@ -422,12 +423,12 @@ export default function CheckoutPage() {
                                                 onChange={handlePaymentChange}
                                                 placeholder="MM/YY"
                                                 maxLength={5}
-                                                className="w-full px-4 py-3 border border-[var(--color-sand)] rounded-lg font-body text-black placeholder:text-gray-400 focus:outline-none focus:border-black transition-colors"
+                                                className="w-full bg-transparent py-2 font-body text-black text-lg border-0 border-b-2 border-gray-300 focus:border-black focus:outline-none transition-colors placeholder:text-gray-400"
                                                 required
                                             />
                                         </div>
-                                        <div>
-                                            <label className="block font-body text-sm text-black mb-2">CVV *</label>
+                                        <div className="relative">
+                                            <label className="block font-body text-xs text-gray-500 uppercase tracking-wide mb-1">CVV *</label>
                                             <input
                                                 type="password"
                                                 name="cvv"
@@ -435,24 +436,24 @@ export default function CheckoutPage() {
                                                 onChange={handlePaymentChange}
                                                 placeholder="•••"
                                                 maxLength={4}
-                                                className="w-full px-4 py-3 border border-[var(--color-sand)] rounded-lg font-body text-black placeholder:text-gray-400 focus:outline-none focus:border-black transition-colors"
+                                                className="w-full bg-transparent py-2 font-body text-black text-lg border-0 border-b-2 border-gray-300 focus:border-black focus:outline-none transition-colors placeholder:text-gray-400"
                                                 required
                                             />
                                         </div>
                                     </div>
                                 </div>
 
-                                <div className="flex gap-4 mt-8">
+                                <div className="flex gap-4 mt-12">
                                     <button
                                         onClick={() => setStep(2)}
-                                        className="px-8 py-4 border border-[var(--color-navy)] text-[var(--color-navy)] font-body text-sm tracking-luxury uppercase hover:bg-[var(--color-navy)] hover:text-white transition-all rounded-lg"
+                                        className="px-8 py-4 border border-black text-black font-body text-sm tracking-luxury uppercase hover:bg-black hover:text-white transition-all"
                                     >
                                         Back
                                     </button>
                                     <button
                                         onClick={handlePlaceOrder}
                                         disabled={isProcessing}
-                                        className="flex-1 py-4 bg-[var(--color-terracotta)] text-white font-body text-sm tracking-luxury uppercase hover:bg-[#b5634d] transition-all rounded-lg disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                                        className="flex-1 py-4 bg-[var(--color-terracotta)] text-white font-body text-sm tracking-luxury uppercase hover:bg-[#b5634d] transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                                     >
                                         {isProcessing ? (
                                             <>
